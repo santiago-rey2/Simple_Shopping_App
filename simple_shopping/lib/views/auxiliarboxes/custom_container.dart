@@ -10,8 +10,10 @@ class Custom_Container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size windowsize = MediaQuery.of(context).size;
     return Container(
       child: Row(
+       // mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
@@ -23,7 +25,7 @@ class Custom_Container extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             Container(
-                width: 320,
+                width: windowsize.width - 88,
                 child: Text(
                 title,
                 softWrap: true,
@@ -35,7 +37,7 @@ class Custom_Container extends StatelessWidget {
                 height: 4,
               ),
               Container(
-                width: 320,
+                width: windowsize.width -88,
                 child: Text(
                 description ?? '',
                 softWrap: true,

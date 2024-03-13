@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    //Carga de datos de la tienda
     Provider.of<ApiController>(context, listen: false).getAllProsducts();
   }
 
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 4,
           ),
+          // Barra de busqueda 
           Container(
             foregroundDecoration: BoxDecoration(
                 border: Border.all(
@@ -48,16 +50,15 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(Icons.search,color: Colors.grey,)),
             ),
           ),
+          // Lista de productos de la tienda
           Expanded(
             child: ListView.builder(
               itemCount: _list.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Product_List_Container(
-                      _list[index].title,
-                      _list[index].image,
-                      _list[index].price),
+                  child: ProductListContainer(
+                      _list[index]),
                 );
               },
             ),

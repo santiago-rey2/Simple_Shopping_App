@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:simple_shopping/controllers/apicontroller.dart';
+import 'package:simple_shopping/models/product/product.dart';
+class ProductView extends StatelessWidget {
+  final Product item;
 
-class Product_View extends StatelessWidget {
-  String image;
-  String name;
-
-  Product_View({Key? key, required this.image, required this.name})
-      : super(key: key);
+  const ProductView({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,35 +15,74 @@ class Product_View extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Page'),
+        backgroundColor: Colors.lightBlue,
       ),
-      body: Column(children: [
-        const SizedBox(
-          height: 4,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: windowsize.width,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                name,
-                softWrap: true,
-                style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            width: windowsize.width,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              item.title,
+              softWrap: true,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 20,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Image.network(
+            item.image,
+            width: windowsize.width * 0.6,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Container(
+            width: windowsize.width,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              '${item.price.toString()} €',
+              softWrap: true,
+              textAlign: TextAlign.start,
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
             ),
-            Image.network(
-              image,
-              width: windowsize.width * 0.6,
-            )
-          ],
-        )
-      ]),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          Container(
+            width: windowsize.width,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              item.description ?? 'No description',
+              softWrap: true,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          FloatingActionButton.extended(
+            onPressed: () {
+              debugPrint('Añadido al carrito');
+            },
+            label: const Text('Añadir al carrito',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black)),
+            backgroundColor: Colors.amber[400],
+          )
+        ],
+      ),
     );
   }
 }

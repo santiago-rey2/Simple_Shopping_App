@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
+import 'package:simple_shopping/views/home.dart';
 import 'package:simple_shopping/views/loginpage.dart';
 
 void main() {
@@ -17,6 +18,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Shopping_App', home: LoginPage());
+    return MaterialApp(
+      title: 'Shopping_App', 
+      initialRoute: '/',
+      //Routes to navigate from app Screens
+      routes: {
+        //Charge login Page, its launched ppal
+        '/' :(context) => LoginPage(),
+        // Charge screen with full list view of products
+        '/productlist' :(context) => const HomePage(),
+      },
+      );
   }
 }

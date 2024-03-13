@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/views/productview.dart';
 
-class Product_List_Container extends StatelessWidget {
-  final String title;
-  final String image;
-  final double price;
+class ProductListContainer extends StatelessWidget {
+  final Product item;
 
-  Product_List_Container(this.title, this.image, this.price);
+  const ProductListContainer(this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +15,16 @@ class Product_List_Container extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Product_View(
-                      image: image,
-                      name: title,
-                    )));
-        print(' Box: $title was tapped ');
+                builder: (context) => ProductView(
+                      item: item,
+                    )
+            ));
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
-            image,
+            item.image,
             width: 80,
             height: 80,
           ),
@@ -39,7 +37,7 @@ class Product_List_Container extends StatelessWidget {
               Container(
                 width: windowsize.width - 92,
                 child: Text(
-                  title,
+                  item.title,
                   softWrap: true,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
@@ -49,7 +47,7 @@ class Product_List_Container extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '$price €',
+                '${item.price} €',
                 softWrap: true,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:simple_shopping/views/home.dart';
 
 class LoginPage extends StatelessWidget {
   final String logintitle = 'Shopping App';
+
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +11,10 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           logintitle,
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        backgroundColor: Colors.lightBlue,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -22,10 +24,13 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  //Box de texto para introducir el usuario
                   Container(
                     foregroundDecoration: BoxDecoration(
                         border: Border.all(
-                            width: 2, color: Colors.grey, style: BorderStyle.solid),
+                            width: 2,
+                            color: Colors.grey,
+                            style: BorderStyle.solid),
                         borderRadius: BorderRadius.circular(10)),
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -36,11 +41,16 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 4,),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  //Input Box de texto para introducir la contraseña del usuario
                   Container(
                     foregroundDecoration: BoxDecoration(
                         border: Border.all(
-                            width: 2, color: Colors.grey, style: BorderStyle.solid),
+                            width: 2,
+                            color: Colors.grey,
+                            style: BorderStyle.solid),
                         borderRadius: BorderRadius.circular(10)),
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -51,13 +61,15 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 4,),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  //Boton de acceso al log
                   FloatingActionButton.extended(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.pushReplacementNamed(context, '/productlist');
                     },
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     label: const Text(
                       'Log in',

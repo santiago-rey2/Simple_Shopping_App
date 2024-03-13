@@ -34,23 +34,26 @@ class ProductListContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
                 width: windowsize.width - 92,
                 child: Text(
                   item.title,
                   softWrap: true,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.w400,fontSize: 18),
                   textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(
-                height: 2,
+                height: 4,
               ),
               Text(
                 '${item.price} €',
                 softWrap: true,
                 style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               )
             ],
           )

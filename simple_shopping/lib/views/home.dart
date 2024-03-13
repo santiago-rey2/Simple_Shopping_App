@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/views/auxiliarboxes/product_list_container.dart';
+import 'package:simple_shopping/views/auxiliarboxes/search_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,20 +37,7 @@ class _HomePageState extends State<HomePage> {
             height: 4,
           ),
           // Barra de busqueda 
-          Container(
-            foregroundDecoration: BoxDecoration(
-                border: Border.all(
-                    width: 2, color: Colors.grey, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(10)),
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            child: const TextField(
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Search...',
-                  icon: Icon(Icons.search,color: Colors.grey,)),
-            ),
-          ),
+          SearchBox(),
           // Lista de productos de la tienda
           Expanded(
             child: ListView.builder(

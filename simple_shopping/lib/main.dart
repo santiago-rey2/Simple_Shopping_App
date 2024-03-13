@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
-import 'package:simple_shopping/views/home.dart';
 import 'package:simple_shopping/views/loginpage.dart';
 
 void main() {

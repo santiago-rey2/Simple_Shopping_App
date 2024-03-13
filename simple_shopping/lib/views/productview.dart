@@ -15,28 +15,32 @@ class Product_View extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prduct Page'),
+        title: const Text('Product Page'),
       ),
       body: Column(children: [
         const SizedBox(
           height: 4,
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(
-              image,
-              width: 200,
-              height: 200,
-            ),
             Container(
-              width: windowsize.width - 204,
+              width: windowsize.width,
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 name,
                 softWrap: true,
                 style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Image.network(
+              image,
+              width: windowsize.width * 0.6,
             )
           ],
         )

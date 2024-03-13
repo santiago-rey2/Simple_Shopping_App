@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping/views/productview.dart';
 
 class Product_List_Container extends StatelessWidget {
-  String title;
-  String image;
-  double price;
+  final String title;
+  final String image;
+  final double price;
 
   Product_List_Container(this.title, this.image, this.price);
 
@@ -12,6 +13,13 @@ class Product_List_Container extends StatelessWidget {
     final Size windowsize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Product_View(
+                      image: image,
+                      name: title,
+                    )));
         print(' Box: $title was tapped ');
       },
       child: Row(
@@ -43,7 +51,8 @@ class Product_List_Container extends StatelessWidget {
               Text(
                 '$price €',
                 softWrap: true,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )
             ],
           )

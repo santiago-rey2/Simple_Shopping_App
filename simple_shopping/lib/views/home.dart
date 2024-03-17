@@ -42,11 +42,10 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: ListView.builder(
               itemCount: _list.length,
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (context,index) {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: ProductListContainer(
-                      _list[index]),
+                  child: ProductListContainer(_list[index]),
                 );
               },
             ),

@@ -5,7 +5,7 @@ class SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[300],
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
           BoxShadow(
@@ -29,7 +29,7 @@ class SearchBox extends StatelessWidget {
             hintText: 'Search...',
             icon: Icon(
               Icons.search,
-              color: Colors.grey,
+              color: Colors.black,
             )),
       ),
     );

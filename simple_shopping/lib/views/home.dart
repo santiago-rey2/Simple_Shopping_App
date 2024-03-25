@@ -27,8 +27,11 @@ class _HomePageState extends State<HomePage> {
         context.watch<ApiController>().products;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        title: const Text('Shopping_App'),
+        backgroundColor: Colors.blue[200],
+        title: const Text(
+          'Shopping_App',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -36,13 +39,13 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 4,
           ),
-          // Barra de busqueda 
+          // Barra de busqueda
           SearchBox(),
           // Lista de productos de la tienda
           Expanded(
             child: ListView.builder(
               itemCount: _list.length,
-              itemBuilder: (context,index) {
+              itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: ProductListContainer(_list[index]),
@@ -52,7 +55,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: Theme(
+        data: Theme.of(context)
+            .copyWith(iconTheme: const IconThemeData(color: Colors.black)),
+        child: Drawer(),
+      ),
     );
   }
 }

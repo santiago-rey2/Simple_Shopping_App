@@ -9,50 +9,65 @@ class ProductListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size windowsize = MediaQuery.of(context).size;
+    //final Size windowsize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.productview,arguments: item);
+        Navigator.pushNamed(context, AppRoutes.productview, arguments: item);
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.network(
-            item.image,
-            width: 80,
-            height: 80,
-          ),
-          const SizedBox(
-            width: 4,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 8,
+      child: Container(
+        width: 344,
+        height: 150,
+        margin: const EdgeInsets.only(top: 4, left: 8, right: 8),
+        decoration: BoxDecoration(
+            color: Colors.grey[500], borderRadius: BorderRadius.circular(8)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 5, left: 8),
+              child: Image.network(
+                item.image,
+                width: 80,
+                height: 120,
               ),
-              SizedBox(
-                width: windowsize.width - 92,
-                child: Text(
-                  item.title,
-                  softWrap: true,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w400, fontSize: 18),
-                  textAlign: TextAlign.center,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 8, left: 8),
+                  width: 250,
+                  child: Text(
+                    item.title,
+                    softWrap: true,
+                    maxLines: 2,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 16),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
-                '${item.price} €',
-                softWrap: true,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              )
-            ],
-          )
-        ],
+                Container(
+                  margin: const EdgeInsets.only(top: 12, bottom: 14, left: 8),
+                  height: 24,
+                  child: Text(
+                    '${item.rating?.rate} ',
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.normal),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 4, left: 8),
+                  child: Text(
+                    '${item.price} €',
+                    softWrap: true,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

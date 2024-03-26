@@ -15,7 +15,7 @@ class ProductView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: SearchBox(),
+        title: const SearchBox(),
         backgroundColor: Colors.lightBlue,
       ),
       body: SingleChildScrollView(

@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     UnmodifiableListView<Product> _list =
         context.watch<ApiController>().products;
     return Scaffold(
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             height: 4,
           ),
           // Barra de busqueda
-          SearchBox(),
+          const SearchBox(),
           // Lista de productos de la tienda
           Expanded(
             child: ListView.builder(
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
       drawer: Theme(
         data: Theme.of(context)
             .copyWith(iconTheme: const IconThemeData(color: Colors.black)),
-        child: Drawer(),
+        child: const Drawer(),
       ),
     );
   }

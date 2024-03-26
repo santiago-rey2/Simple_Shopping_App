@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchBox extends StatelessWidget {
+  const SearchBox({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +14,7 @@ class SearchBox extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 2), // changes position of shadow
+            offset: const Offset(0, 2), // changes position of shadow
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 class ProductListContainer extends StatelessWidget {
   final Product item;
@@ -47,21 +48,48 @@ class ProductListContainer extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 12, bottom: 14, left: 8),
-                  height: 24,
-                  child: Text(
-                    '${item.rating?.rate} ',
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.normal),
-                  ),
-                ),
+                    margin: const EdgeInsets.only(top: 12, bottom: 14, left: 8),
+                    height: 24,
+                    child: RatingStars(
+                      value: item.rating?.rate ?? 0.0,
+                      valueLabelTextStyle: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 12.0),
+                    )),
                 Container(
                   margin: const EdgeInsets.only(top: 4, left: 8),
-                  child: Text(
-                    '${item.price} €',
-                    softWrap: true,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w700),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 100,
+                        child: Text(
+                          '${item.price} €',
+                          softWrap: true,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Container(
+                        width: 130,
+                        height: 20,
+                        margin: const EdgeInsets.only(left: 30),
+                        child: FloatingActionButton.extended(
+                            onPressed: () {
+                              debugPrint('Añadido al carrito');
+                            },
+                            label: const Text('Añadir al carrito',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black)),
+                            backgroundColor: Colors.amber[400],
+                            heroTag: Text(item.title)
+                          ),
+                      )
+                    ],
                   ),
                 )
               ],

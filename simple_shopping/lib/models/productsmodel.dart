@@ -6,9 +6,9 @@ class ProductsModel {
   List<Product> fetchproductslist(var response) {
     List<dynamic> data = json.decode(response.body);
     List<Product> products = [];
-    data.forEach((element) {
+    for (var element in data) {
       products.add(Product.fromJson1(element));
-    });
+    }
     return products;
   }
 }

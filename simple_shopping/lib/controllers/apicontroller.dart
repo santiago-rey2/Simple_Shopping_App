@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:simple_shopping/models/productsmodel.dart';
 
 class ApiController extends ChangeNotifier {
-  ProductsModel _model = ProductsModel();
+  final ProductsModel _model = ProductsModel();
 
   List<Product> _products = [];
   UnmodifiableListView<Product> get products => UnmodifiableListView(_products);

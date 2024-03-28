@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
-import 'package:simple_shopping/views/auxiliarboxes/search_container.dart';
+import 'package:simple_shopping/views/auxiliarboxes/ratingsstars.dart';
+
 class ProductView extends StatelessWidget {
   final Product item;
 
@@ -20,70 +21,83 @@ class ProductView extends StatelessWidget {
         backgroundColor: Colors.blue[200],
         iconTheme: const IconThemeData(color: Colors.black),
       ),
+      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 8,
-            ),
             Container(
               width: windowsize.width,
               padding: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.only(top: 8),
               child: Text(
                 item.title,
                 softWrap: true,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 24, fontWeight: FontWeight.normal),
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Image.network(
-              item.image,
-              width: windowsize.width * 0.6,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
             Container(
-              width: windowsize.width,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                '${item.price.toString()} €',
-                softWrap: true,
-                textAlign: TextAlign.start,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+              margin: const EdgeInsets.only(top: 20),
+              foregroundDecoration: BoxDecoration(
+                  border: Border.all(
+                      width: 2, color: Colors.black, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(8.0)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  item.image,
+                  width: 180,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
             ),
-            const SizedBox(
-              height: 4,
-            ),
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                margin: const EdgeInsets.only(top: 16),
+                height: 24,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Ratings(item: item),
+                    Text(
+                      '${item.price.toString()} €',
+                      softWrap: true,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.normal),
+                    ),
+                  ],
+                )),
             Container(
               width: windowsize.width,
               padding: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.only(top: 8),
               child: Text(
                 item.description ?? 'No description',
                 softWrap: true,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
               ),
             ),
             const SizedBox(
               height: 16,
             ),
-            FloatingActionButton.extended(
-              onPressed: () {
-                debugPrint('Añadido al carrito');
-              },
-              label: const Text('Añadir al carrito',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black)),
-              backgroundColor: Colors.amber[400],
+            Container(
+              margin: const EdgeInsets.only(top: 24),
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  debugPrint('Añadido al carrito');
+                },
+                label: const Text('Añadir al carrito',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black)),
+                backgroundColor: Colors.amber[400],
+              ),
             )
           ],
         ),

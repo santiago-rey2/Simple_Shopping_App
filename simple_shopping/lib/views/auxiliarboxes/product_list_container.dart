@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
-import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:simple_shopping/views/auxiliarboxes/ratingsstars.dart';
 
 class ProductListContainer extends StatelessWidget {
   final Product item;
@@ -20,16 +20,19 @@ class ProductListContainer extends StatelessWidget {
         height: 150,
         margin: const EdgeInsets.only(top: 4, left: 8, right: 8),
         decoration: BoxDecoration(
-            color: Colors.grey[500], borderRadius: BorderRadius.circular(8)),
+            color: Colors.grey[300], borderRadius: BorderRadius.circular(8)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               margin: const EdgeInsets.only(top: 5, bottom: 5, left: 8),
-              child: Image.network(
-                item.image,
-                width: 80,
-                height: 120,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  item.image,
+                  width: 80,
+                  height: 120,
+                ),
               ),
             ),
             Column(
@@ -50,14 +53,7 @@ class ProductListContainer extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 12, bottom: 14, left: 8),
                     height: 24,
-                    child: RatingStars(
-                      value: item.rating?.rate ?? 0.0,
-                      valueLabelTextStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 12.0),
-                    )),
+                    child: Ratings(item: item)),
                 Container(
                   margin: const EdgeInsets.only(top: 4, left: 8),
                   child: Row(

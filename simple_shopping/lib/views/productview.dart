@@ -15,7 +15,6 @@ class ProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size windowsize = MediaQuery.of(context).size;
-    int dropmenuvalue = 1;
     return Scaffold(
       appBar: AppBar(
         title: const AppHomeBar(),

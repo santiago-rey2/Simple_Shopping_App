@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/views/auxiliarboxes/ratingsstars.dart';
@@ -75,6 +77,7 @@ class ProductListContainer extends StatelessWidget {
                         child: FloatingActionButton.extended(
                             onPressed: () {
                               debugPrint('Añadido al carrito');
+                              context.read<ApiController>().addToCart(item);
                             },
                             label: const Text('Añadir al carrito',
                                 style: TextStyle(

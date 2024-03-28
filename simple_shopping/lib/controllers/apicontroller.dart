@@ -9,12 +9,19 @@ class ApiController extends ChangeNotifier {
   final ProductsModel _model = ProductsModel();
 
   List<Product> _products = [];
+  List<Product> _cart = [];
   UnmodifiableListView<Product> get products => UnmodifiableListView(_products);
+  UnmodifiableListView<Product> get cart => UnmodifiableListView(_cart);
 
   void getAllProsducts() async {
     _products = await _fetchproducts();
     notifyListeners();
   }
+  
+  void addToCart(Product p){
+    _cart.add(p);
+  }
+  
 
   Future<List<Product>> _fetchproducts() async {
     var url = Uri.parse('https://fakestoreapi.com/products');

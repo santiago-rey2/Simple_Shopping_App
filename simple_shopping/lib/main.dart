@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
+import 'package:simple_shopping/views/cartlist.dart';
 import 'package:simple_shopping/views/home.dart';
 import 'package:simple_shopping/views/loginpage.dart';
 import 'package:simple_shopping/views/productview.dart';
@@ -32,6 +33,8 @@ class MainApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) =>
                     ProductView(item: settings.arguments as Product));
+          case AppRoutes.cartview:
+            return MaterialPageRoute(builder: (context)=> const CartList());
           default:
             return MaterialPageRoute(builder: (context) => const LoginPage());
         }

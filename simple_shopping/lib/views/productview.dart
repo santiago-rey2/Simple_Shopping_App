@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
+import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
 import 'package:simple_shopping/views/auxiliarboxes/search_container.dart';
 class ProductView extends StatelessWidget {
   final Product item;
@@ -15,8 +16,9 @@ class ProductView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const SearchBox(),
-        backgroundColor: Colors.lightBlue,
+        title: const AppHomeBar(),
+        backgroundColor: Colors.blue[200],
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Column(

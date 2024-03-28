@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
+import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
 import 'package:simple_shopping/views/auxiliarboxes/product_list_container.dart';
 import 'package:simple_shopping/views/auxiliarboxes/search_container.dart';
 
@@ -28,13 +29,20 @@ class _HomePageState extends State<HomePage> {
         context.watch<ApiController>().products;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[200],
-        title: const Text(
-          'Shopping_App',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu_rounded),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
+          backgroundColor: Colors.blue[200],
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const AppHomeBar()),
       body: Column(
         children: [
           const SizedBox(
@@ -56,11 +64,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: Theme(
-        data: Theme.of(context)
-            .copyWith(iconTheme: const IconThemeData(color: Colors.black)),
-        child: const Drawer(),
-      ),
+      drawer: const Drawer(),
     );
   }
 }

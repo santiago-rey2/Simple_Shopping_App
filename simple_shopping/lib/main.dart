@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shopping_App',
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.productlist,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.productlist:

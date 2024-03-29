@@ -37,7 +37,7 @@ class MainApp extends StatelessWidget {
           case AppRoutes.cartview:
             return MaterialPageRoute(builder: (context)=> const CartList());
           default:
-            return MaterialPageRoute(builder: (context) => const LoginPage());
+            return MaterialPageRoute(builder: (context) => LoginPage());
         }
       },
     );

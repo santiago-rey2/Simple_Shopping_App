@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
+import 'package:simple_shopping/settings/app_routes.dart';
+import 'package:simple_shopping/settings/app_text.dart';
+import 'package:simple_shopping/views/auxiliarboxes/acctionsbutton.dart';
 import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
 import 'package:simple_shopping/views/auxiliarboxes/menucantidades.dart';
 import 'package:simple_shopping/views/auxiliarboxes/ratingsstars.dart';
@@ -9,7 +12,7 @@ class ProductView extends StatelessWidget {
 
   const ProductView({
     Key? key,
-    required this.item,
+    required this.item
   }) : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class ProductView extends StatelessWidget {
     final Size windowsize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const AppHomeBar(),
+        title: const AppHomeBar(actualroute: AppRoutes.productview,),
         backgroundColor: Colors.blue[200],
         iconTheme: const IconThemeData(color: Colors.black),
       ),
@@ -75,7 +78,7 @@ class ProductView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               margin: const EdgeInsets.only(top: 8),
               child: Text(
-                item.description ?? 'No description',
+                item.description ?? AppText.nodescriptionerror,
                 softWrap: true,
                 textAlign: TextAlign.center,
                 style:
@@ -84,56 +87,47 @@ class ProductView extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(top: 16),
-              child: Text('En Stock',
+              child: Text(AppText.stock,
                   style: TextStyle(
                       color: Colors.green[300],
                       fontWeight: FontWeight.w300,
                       fontSize: 24)),
             ),
             Container(
+                width: 240,
+                margin: const EdgeInsets.only(top: 8),
+                decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(8)),
+                foregroundDecoration: BoxDecoration(
+                    border: Border.all(
+                        width: 2,
+                        color: Colors.black,
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(8.0)),
+                child: const Desplegable()),
+            ActionButton(
+              label: AppText.addtocart,
               width: 240,
-              margin: const EdgeInsets.only(top: 8),
-              decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(8)),
-              foregroundDecoration: BoxDecoration(
-                  border: Border.all(
-                      width: 2, color: Colors.black, style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(8.0)),
-              child: const Desplegable()
-            ),
-            Container(
               margin: const EdgeInsets.only(top: 24),
-              width: 240,
-              child: FloatingActionButton.extended(
-                heroTag: const Text('Añadir'),
-                onPressed: () {
-                  debugPrint('Añadido al carrito');
-                },
-                label: const Text('Añadir al carrito',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black)),
-                backgroundColor: Colors.amber[400],
-              ),
+              tag: 'Add',
+              function: () {
+                debugPrint('Añadido al carrito');
+              },
+              fontSize: 18,
+              background: Colors.amber[400],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 8),
+            ActionButton(
+              label: AppText.buynow,
               width: 240,
-              child: FloatingActionButton.extended(
-                heroTag: const Text('Comprar'),
-                onPressed: () {
-                  debugPrint('Comprar ya');
-                },
-                label: const Text('Comprar ya',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black)),
-                backgroundColor: const Color.fromARGB(255, 255, 169, 40),
-              ),
-            )
+              margin: const EdgeInsets.only(top: 8),
+              tag: 'Buy',
+              function: () {
+                debugPrint('Comprar ya');
+              },
+              fontSize: 18,
+              background: const Color.fromARGB(255, 255, 169, 40),
+            ),
           ],
         ),
       ),

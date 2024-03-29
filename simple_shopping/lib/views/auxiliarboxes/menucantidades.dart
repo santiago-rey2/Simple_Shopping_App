@@ -15,7 +15,6 @@ class _DesplegableState extends State<Desplegable> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<int>(
-        hint: const Text('Cantidades'),
         value: dropmenuvalue,
         borderRadius: BorderRadius.circular(8),
         isExpanded: true,
@@ -29,7 +28,7 @@ class _DesplegableState extends State<Desplegable> {
         items: numeros.map<DropdownMenuItem<int>>((int value) {
           return DropdownMenuItem<int>(
             value: value,
-            child: Text('$value'),
+            child: Text('Cantidad : $value'),
           );
         }).toList());
   }

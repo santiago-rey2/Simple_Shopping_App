@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
+import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
 import 'package:simple_shopping/views/auxiliarboxes/panel_lateral.dart';
 import 'package:simple_shopping/views/auxiliarboxes/product_list_container.dart';
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.blue[200],
           iconTheme: const IconThemeData(color: Colors.black),
-          title: const AppHomeBar()),
+          title: const AppHomeBar(actualroute: AppRoutes.home,)),
       body: Column(
         children: [
           const SizedBox(

@@ -2,9 +2,12 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
-import 'package:simple_shopping/models/product/product.dart';
+import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
+import 'package:simple_shopping/settings/app_routes.dart';
+import 'package:simple_shopping/settings/app_text.dart';
+import 'package:simple_shopping/views/auxiliarboxes/acctionsbutton.dart';
 import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
-import 'package:simple_shopping/views/auxiliarboxes/product_list_container.dart';
+import 'package:simple_shopping/views/auxiliarboxes/cart_list_container.dart';
 
 class CartList extends StatefulWidget {
   const CartList({super.key});
@@ -16,13 +19,16 @@ class CartList extends StatefulWidget {
 class _CartListState extends State<CartList> {
   @override
   Widget build(BuildContext context) {
-    late UnmodifiableListView<Product> list =
+    UnmodifiableListView<CartProduct> list =
         context.watch<ApiController>().cart;
+    double cartprice = context.watch<ApiController>().totalprice;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.blue[200],
           iconTheme: const IconThemeData(color: Colors.black),
-          title: const AppHomeBar()),
+          title: const AppHomeBar(
+            actualroute: AppRoutes.cartview,
+          )),
       body: Column(
         children: [
           Expanded(
@@ -31,8 +37,25 @@ class _CartListState extends State<CartList> {
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: ProductListContainer(list[index]));
-                  }))
+                        child: CartListContainer(cartitem: list[index]));
+                  })),
+          Container(
+              margin: const EdgeInsets.only(top: 4),
+              child: Text(
+                'Total Price : $cartprice €',
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+              )),
+          ActionButton(
+            label: AppText.buynow,
+            width: 344,
+            fontSize: 20,
+            margin: const EdgeInsets.only(top: 4, bottom: 16),
+            background: Colors.amber[400],
+            function: () {
+              debugPrint('Comprado');
+            },
+          )
         ],
       ),
     );

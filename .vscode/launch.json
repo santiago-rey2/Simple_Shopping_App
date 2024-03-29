@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "simple_shopping",
+            "cwd": "simple_shopping",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "simple_shopping (profile mode)",
+            "cwd": "simple_shopping",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "simple_shopping (release mode)",
+            "cwd": "simple_shopping",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

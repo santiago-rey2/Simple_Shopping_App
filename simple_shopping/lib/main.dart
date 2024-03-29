@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
+import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/views/cartlist.dart';
 import 'package:simple_shopping/views/home.dart';
 import 'package:simple_shopping/views/loginpage.dart';
@@ -23,8 +24,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shopping_App',
-      initialRoute: AppRoutes.productlist,
+      title: AppText.apptitle,
+      initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.productlist:

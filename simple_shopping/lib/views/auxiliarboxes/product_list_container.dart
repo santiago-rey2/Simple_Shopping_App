@@ -32,7 +32,7 @@ class ProductListContainer extends StatelessWidget {
             button: ActionButton(
                 label: AppText.addtocart,
                 width: 130,
-                height: 20,
+                height: 35,
                 margin: const EdgeInsets.only(left: 30),
                 function: () {
                   debugPrint('Añadido al carrito');

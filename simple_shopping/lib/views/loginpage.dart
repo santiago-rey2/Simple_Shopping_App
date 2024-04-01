@@ -7,8 +7,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.blue[200],
+      backgroundColor: Colors.blue[200],
+      body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(
             margin: const EdgeInsetsDirectional.only(top: 100),
@@ -39,9 +39,10 @@ class LoginPage extends StatelessWidget {
                     child: TextFormField(
                       validator: (value) {
                         return (value != null && !value.contains('@'))
-                            ? 'You need to introduce email how example@email'
+                            ? AppText.nocorrectemail
                             : null;
                       },
+                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: AppText.usernameexample,
@@ -63,12 +64,13 @@ class LoginPage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 4, left: 30, right: 30),
                     child: TextFormField(
                       validator: (value) {
-                        if(value == null){
-                          return 'Introduce password';
+                        if (value == null) {
+                          return AppText.nopassworderror;
                         }
-                        if(value!.length < 8){
-                          return 'Password need to be almost 8 caracters';
+                        if (value.length < 8) {
+                          return AppText.nolongerpassword;
                         }
+                        return null;
                       },
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -86,11 +88,9 @@ class LoginPage extends StatelessWidget {
             margin: const EdgeInsets.only(top: 60),
             child: FloatingActionButton.extended(
               onPressed: () {
-                if(_loginKey.currentState!.validate()){
-                  debugPrint('Todos los campos validados');
+                if (_loginKey.currentState!.validate()) {
                   Navigator.pushReplacementNamed(context, '/productlist');
-                };
-               
+                }
               },
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -111,10 +111,18 @@ class LoginPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(8)),
-                  child: const Text(
-                    'Log In With Google',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 8,),
+                      Image.asset('assets/LogoGoogleTransparente.png',width: 24,height: 24,),
+                      const SizedBox(width: 30,),
+                      const Center(
+                        child: Text(
+                          AppText.loginwithgoogle,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
@@ -123,10 +131,18 @@ class LoginPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(8)),
-                  child: const Text(
-                    'Log In With Facebook',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
+                  child:  Row(
+                    children: [
+                      const SizedBox(width: 8,),
+                      Image.asset('assets/facebook-logo-2019.png',width: 24,height: 24,),
+                      const SizedBox(width: 20,),
+                      const Center(
+                        child: Text(
+                          AppText.loginwithfacebook,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],

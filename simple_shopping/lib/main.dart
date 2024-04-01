@@ -24,8 +24,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: AppText.apptitle,
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.productlist,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.productlist:

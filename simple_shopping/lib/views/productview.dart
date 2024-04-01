@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_shopping/controllers/apicontroller.dart';
+import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
@@ -111,8 +114,8 @@ class ProductView extends StatelessWidget {
               width: 240,
               margin: const EdgeInsets.only(top: 24),
               tag: 'Add',
-              function: () {
-                debugPrint('Añadido al carrito');
+              function: () {   
+                context.read<ApiController>().addToCart(CartProduct(item: item, cantidad: 1));
               },
               fontSize: 18,
               background: Colors.amber[400],

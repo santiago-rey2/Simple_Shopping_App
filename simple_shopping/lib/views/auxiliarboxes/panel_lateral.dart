@@ -42,8 +42,8 @@ class _Tiles extends StatelessWidget {
               style: const TextStyle(fontSize: 24),
             ),
           )),
-      onTap: (){
-        print('Pulsado $name');
+      onTap: () {
+        debugPrint('Pulsado $name');
       },
     );
   }

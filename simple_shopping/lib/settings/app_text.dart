@@ -1,4 +1,4 @@
-class AppText{
+class AppText {
   AppText._();
 
   static const String apptitle = 'Shopping_App';
@@ -11,4 +11,11 @@ class AppText{
   static const String password = 'Password*';
   static const String hello = 'Hello';
   static const String usernameexample = 'example@email.com';
+  static const String nopassworderror = 'Introduce una contraseña';
+  static const String nolongerpassword =
+      'Password need to be almost 8 caracters';
+  static const String nocorrectemail =
+      'You need to introduce email how example@email';
+  static const String loginwithgoogle = 'Google';
+  static const String loginwithfacebook = 'Facebook';
 }

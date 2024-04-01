@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppText.apptitle,
-      initialRoute: AppRoutes.productlist,
+      initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.productlist:

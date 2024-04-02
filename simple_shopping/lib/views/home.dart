@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
-import 'package:simple_shopping/views/auxiliarboxes/apphomebar.dart';
-import 'package:simple_shopping/views/auxiliarboxes/panel_lateral.dart';
-import 'package:simple_shopping/views/auxiliarboxes/product_list_container.dart';
-import 'package:simple_shopping/views/auxiliarboxes/search_container.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/apphomebar.dart';
+import 'package:simple_shopping/views/auxiliarboxes/home/panel_lateral.dart';
+import 'package:simple_shopping/views/auxiliarboxes/product/product_list_container.dart';
+import 'package:simple_shopping/views/auxiliarboxes/home/search_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,25 +26,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: no_leading_underscores_for_local_identifiers
-    UnmodifiableListView<Product> _list =
+    UnmodifiableListView<Product> list =
         context.watch<ApiController>().products;
     return Scaffold(
-      appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu_rounded),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          backgroundColor: Colors.blue[200],
-          iconTheme: const IconThemeData(color: Colors.black),
-          title: const AppHomeBar(actualroute: AppRoutes.home,)),
+      appBar: const AppHomeBar(
+        actualroute: AppRoutes.productlist,
+        leading: _DrawerButton()
+      ),
       body: Column(
         children: [
           const SizedBox(
@@ -55,11 +43,11 @@ class _HomePageState extends State<HomePage> {
           // Lista de productos de la tienda
           Expanded(
             child: ListView.builder(
-              itemCount: _list.length,
+              itemCount: list.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: ProductListContainer(_list[index]),
+                  child: ProductListContainer(list[index]),
                 );
               },
             ),
@@ -68,5 +56,21 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: const PanelLateral(),
     );
+  }
+}
+class _DrawerButton extends StatelessWidget {
+  const _DrawerButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return  Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(Icons.menu_rounded),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        });
   }
 }

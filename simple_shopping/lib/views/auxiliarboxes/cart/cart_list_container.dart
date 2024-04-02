@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
-import 'package:simple_shopping/views/auxiliarboxes/containerview.dart';
-import 'package:simple_shopping/views/auxiliarboxes/countitemsbox.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/containerview.dart';
+import 'package:simple_shopping/views/auxiliarboxes/cart/countitemsbox.dart';
 
 class CartListContainer extends StatelessWidget {
   final CartProduct cartitem;

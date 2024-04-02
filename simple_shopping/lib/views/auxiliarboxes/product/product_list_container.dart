@@ -5,8 +5,8 @@ import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
-import 'package:simple_shopping/views/auxiliarboxes/acctionsbutton.dart';
-import 'package:simple_shopping/views/auxiliarboxes/containerview.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/containerview.dart';
 
 class ProductListContainer extends StatelessWidget {
   final Product item;

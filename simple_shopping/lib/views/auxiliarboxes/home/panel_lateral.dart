@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:simple_shopping/settings/app_text.dart";
+import "package:simple_shopping/settings/colors.dart";
 
 class PanelLateral extends StatelessWidget {
   const PanelLateral({super.key});
@@ -6,17 +8,17 @@ class PanelLateral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: AppColors.brandSecondaryColor,
       child: Column(children: [
         AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.blue[200],
+          backgroundColor: AppColors.brandPrimaryColor,
           title: const Text('Opciones'),
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 24),
         ),
-        const _Tiles(name: 'Mis Pedidos'),
-        const _Tiles(name: 'Perfil'),
-        const _Tiles(name: 'Categorias'),
+        const _Tiles(name: AppText.orders),
+        const _Tiles(name: AppText.profile),
+        const _Tiles(name: AppText.categories),
       ]),
     );
   }
@@ -33,7 +35,7 @@ class _Tiles extends StatelessWidget {
       child: Container(
           width: double.infinity,
           height: 40,
-          decoration: BoxDecoration(color: Colors.grey[400]),
+          decoration: const BoxDecoration(color: AppColors.brandLightColor),
           margin: const EdgeInsets.only(top: 4),
           child: Center(
             child: Text(

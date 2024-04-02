@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
-import 'package:simple_shopping/views/auxiliarboxes/ratingsstars.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/ratingsstars.dart';
 
 class Containerview extends StatelessWidget {
   final Product item;

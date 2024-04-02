@@ -18,4 +18,7 @@ class AppText {
       'You need to introduce email how example@email';
   static const String loginwithgoogle = 'Google';
   static const String loginwithfacebook = 'Facebook';
+  static const String categories = 'Categorias';
+  static const String orders = 'Pedidos';
+  static const String profile = 'Perfil';
 }

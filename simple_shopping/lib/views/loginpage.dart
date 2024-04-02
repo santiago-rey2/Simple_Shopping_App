@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
+import 'package:simple_shopping/settings/colors.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -7,7 +9,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[200],
+      backgroundColor: AppColors.brandPrimaryColor,
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(
@@ -15,7 +17,7 @@ class LoginPage extends StatelessWidget {
             child: const Text(
               AppText.hello,
               style: TextStyle(
-                  fontSize: 48, color: Color.fromARGB(255, 46, 121, 250)),
+                  fontSize: 48, color: Color.fromRGBO(0, 87, 255, 1)),
             ),
           ),
           Form(
@@ -25,7 +27,7 @@ class LoginPage extends StatelessWidget {
                   //Box de texto para introducir el usuario
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: AppColors.brandLightColor,
                         borderRadius: BorderRadius.circular(10)),
                     foregroundDecoration: BoxDecoration(
                         border: Border.all(
@@ -52,7 +54,7 @@ class LoginPage extends StatelessWidget {
                   //Input Box de texto para introducir la contraseña del usuario
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: AppColors.brandLightColor,
                         borderRadius: BorderRadius.circular(10)),
                     foregroundDecoration: BoxDecoration(
                         border: Border.all(
@@ -83,13 +85,14 @@ class LoginPage extends StatelessWidget {
               )),
           //Boton de acceso al log
           Container(
-            width: 330,
+            width: 344,
             height: 50,
             margin: const EdgeInsets.only(top: 60),
             child: FloatingActionButton.extended(
+              backgroundColor: AppColors.brandLoginButtonColor,
               onPressed: () {
                 if (_loginKey.currentState!.validate()) {
-                  Navigator.pushReplacementNamed(context, '/productlist');
+                  Navigator.pushReplacementNamed(context, AppRoutes.productlist);
                 }
               },
               shape: const RoundedRectangleBorder(
@@ -106,10 +109,10 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 140,
+                  width: 146,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: AppColors.brandLightColor,
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     children: [
@@ -129,7 +132,7 @@ class LoginPage extends StatelessWidget {
                   width: 140,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: AppColors.brandLightColor,
                       borderRadius: BorderRadius.circular(8)),
                   child:  Row(
                     children: [

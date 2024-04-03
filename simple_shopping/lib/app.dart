@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.defaultTheme,
       title: AppText.apptitle,
-      initialRoute: AppRoutes.productlist,
+      initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.productlist:

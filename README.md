@@ -30,7 +30,7 @@ El objetivo principal de este proyecto es proporcionarme una experiencia prácti
 
 ## Autor
 
-Este proyecto fue iniciado y es mantenido por [Tu Nombre/Apellido].
+Este proyecto fue iniciado y es mantenido por Santiago Rey García.
 
 ## Licencia
 

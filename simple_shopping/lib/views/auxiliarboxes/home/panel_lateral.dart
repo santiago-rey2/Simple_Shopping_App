@@ -35,7 +35,7 @@ class _Tiles extends StatelessWidget {
       child: Container(
           width: double.infinity,
           height: 40,
-          decoration: const BoxDecoration(color: AppColors.brandLightColor),
+          decoration: const BoxDecoration(color: AppColors.brandLightGreyColor),
           margin: const EdgeInsets.only(top: 4),
           child: Center(
             child: Text(

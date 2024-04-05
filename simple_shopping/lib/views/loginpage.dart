@@ -3,21 +3,57 @@ import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _loginKey = GlobalKey<FormState>();
+  late BoxDecoration userContainerDecoration;
+  late BoxDecoration pswContainerDecoration;
+  final defaultInputBorder = InputBorder.none;
+  final presentationTextStyle = const TextStyle(
+      fontSize: 48,
+      color: AppColors.brandInitalTextColor,
+      fontWeight: FontWeight.w600);
+  final defaultContainerInputDecoration = BoxDecoration(
+      color: AppColors.brandLightGreyColor,
+      borderRadius: BorderRadius.circular(10));
+  final activeContainerInputDecoration = BoxDecoration(
+      color: AppColors.brandLightGreyColor,
+      border: Border.all(color: AppColors.brandOnFocusLoginFormColor, width: 2),
+      borderRadius: BorderRadius.circular(10));
+  final defaultLabelStyle = const TextStyle(
+      color: AppColors.brandLightTextColor, fontWeight: FontWeight.normal);
+  final defaultBoxDecoration = BoxDecoration(
+      color: AppColors.brandLightGreyColor,
+      borderRadius: BorderRadius.circular(8));
+  final defaultPaddingErrorFormText = const EdgeInsets.only(top: 1);
+  bool isChecked = false;
+
+  @override
+  void initState() {
+    super.initState;
+    userContainerDecoration = defaultContainerInputDecoration;
+    pswContainerDecoration = defaultContainerInputDecoration;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.brandPrimaryColor,
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(children: [
           Container(
-            margin: const EdgeInsetsDirectional.only(top: 100),
-            child: const Text(
+            margin: const EdgeInsetsDirectional.only(top: 120),
+            child: Text(
               AppText.hello,
-              style: TextStyle(
-                  fontSize: 48, color: Color.fromRGBO(0, 87, 255, 1)),
+              style: presentationTextStyle,
             ),
           ),
           Form(
@@ -26,73 +62,107 @@ class LoginPage extends StatelessWidget {
                 children: [
                   //Box de texto para introducir el usuario
                   Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.brandLightColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    foregroundDecoration: BoxDecoration(
-                        border: Border.all(
-                            width: 2,
-                            color: Colors.grey,
-                            style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    margin:
-                        const EdgeInsets.only(top: 128, left: 30, right: 30),
+                    height: 64,
+                    padding: const EdgeInsets.only(left: 18),
+                    margin: const EdgeInsets.only(top: 50),
+                    decoration: userContainerDecoration,
                     child: TextFormField(
-                      validator: (value) {
-                        return (value != null && !value.contains('@'))
-                            ? AppText.nocorrectemail
-                            : null;
+                      onTap: () {
+                        setState(() {
+                          userContainerDecoration =
+                              activeContainerInputDecoration;
+                          pswContainerDecoration =
+                              defaultContainerInputDecoration;
+                        });
                       },
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
+                      onTapOutside: (event) {
+                        setState(() {
+                          userContainerDecoration =
+                              defaultContainerInputDecoration;
+                        });
+                      },
+                      validator: (value) {
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          border: defaultInputBorder,
+                          contentPadding: defaultPaddingErrorFormText,
                           hintText: AppText.usernameexample,
-                          labelText: AppText.username),
+                          labelText: AppText.username,
+                          labelStyle: defaultLabelStyle),
                     ),
                   ),
                   //Input Box de texto para introducir la contraseña del usuario
                   Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.brandLightColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    foregroundDecoration: BoxDecoration(
-                        border: Border.all(
-                            width: 2,
-                            color: Colors.grey,
-                            style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    margin: const EdgeInsets.only(top: 4, left: 30, right: 30),
+                    height: 64,
+                    decoration: pswContainerDecoration,
+                    padding: const EdgeInsets.only(left: 18),
+                    margin: const EdgeInsets.only(top: 20),
                     child: TextFormField(
+                      onTap: () {
+                        setState(() {
+                          userContainerDecoration =
+                              defaultContainerInputDecoration;
+                          pswContainerDecoration =
+                              activeContainerInputDecoration;
+                        });
+                      },
+                      onTapOutside: (event) {
+                        setState(() {
+                          pswContainerDecoration =
+                              defaultContainerInputDecoration;
+                        });
+                      },
                       validator: (value) {
-                        if (value == null) {
-                          return AppText.nopassworderror;
-                        }
-                        if (value.length < 8) {
-                          return AppText.nolongerpassword;
-                        }
                         return null;
                       },
                       obscureText: true,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
+                      decoration: InputDecoration(
+                          border: defaultInputBorder,
+                          contentPadding: defaultPaddingErrorFormText,
                           hintText: AppText.password,
-                          labelText: AppText.password),
+                          label: const Text(AppText.password),
+                          labelStyle: defaultLabelStyle),
                     ),
                   ),
                 ],
               )),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = !isChecked;
+                          });
+                        }),
+                    const Text(AppText.remenberPsw),
+                  ],
+                ),
+                const Text(
+                  AppText.addtocart,
+                  style: TextStyle(
+                      color: AppColors.brandLightTextColor, fontSize: 12),
+                )
+              ],
+            ),
+          ),
           //Boton de acceso al log
           Container(
             width: 344,
             height: 50,
-            margin: const EdgeInsets.only(top: 60),
+            margin: const EdgeInsets.only(top: 66),
             child: FloatingActionButton.extended(
               backgroundColor: AppColors.brandLoginButtonColor,
               onPressed: () {
                 if (_loginKey.currentState!.validate()) {
-                  Navigator.pushReplacementNamed(context, AppRoutes.productlist);
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.productlist);
                 }
               },
               shape: const RoundedRectangleBorder(
@@ -104,23 +174,51 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 84, left: 30, right: 30),
+            margin: const EdgeInsets.only(top: 34),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 120,
+                    height: 1,
+                    decoration: const BoxDecoration(
+                        color: AppColors.brandDivisorLineColor),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      child: const Text(AppText.logInWith)),
+                  Container(
+                    width: 120,
+                    height: 1,
+                    decoration: const BoxDecoration(
+                        color: AppColors.brandDivisorLineColor),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 60),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 146,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: AppColors.brandLightColor,
-                      borderRadius: BorderRadius.circular(8)),
+                  width: 160,
+                  height: 60,
+                  padding: const EdgeInsets.all(15),
+                  decoration: defaultBoxDecoration,
                   child: Row(
                     children: [
-                      const SizedBox(width: 8,),
-                      Image.asset('assets/LogoGoogleTransparente.png',width: 24,height: 24,),
-                      const SizedBox(width: 30,),
-                      const Center(
-                        child: Text(
+                      Image.asset(
+                        'assets/LogoGoogleTransparente.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 20),
+                        child: const Text(
                           AppText.loginwithgoogle,
                           style: TextStyle(fontSize: 16),
                         ),
@@ -129,18 +227,20 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 140,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: AppColors.brandLightColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child:  Row(
+                  width: 160,
+                  height: 60,
+                  padding: const EdgeInsets.all(15),
+                  decoration: defaultBoxDecoration,
+                  child: Row(
                     children: [
-                      const SizedBox(width: 8,),
-                      Image.asset('assets/facebook-logo-2019.png',width: 24,height: 24,),
-                      const SizedBox(width: 20,),
-                      const Center(
-                        child: Text(
+                      Image.asset(
+                        'assets/facebook-logo-2019.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 20),
+                        child: const Text(
                           AppText.loginwithfacebook,
                           style: TextStyle(fontSize: 16),
                         ),
@@ -151,8 +251,20 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 70, left: 65),
+            child: const Row(
+              children: [
+                Text(AppText.areAMember),
+                Text(
+                  AppText.registerNow,
+                  style: TextStyle(color: AppColors.brandOnFocusLoginFormColor),
+                )
+              ],
+            ),
+          )
         ]),
-      ),
+      )),
     );
   }
 }

@@ -78,7 +78,7 @@ class ProductView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               margin: const EdgeInsets.only(top: 8),
               child: Text(
-                item.description ?? AppText.nodescriptionerror,
+                item.description ?? AppErrorText.nodescriptionerror,
                 softWrap: true,
                 textAlign: TextAlign.start,
                 style:
@@ -102,7 +102,7 @@ class ProductView extends StatelessWidget {
                 width: 240,
                 margin: const EdgeInsets.only(top: 8),
                 decoration: BoxDecoration(
-                    color: AppColors.brandLightColor,
+                    color: AppColors.brandLightGreyColor,
                     borderRadius: BorderRadius.circular(8)),
                 foregroundDecoration: BoxDecoration(
                     border: Border.all(

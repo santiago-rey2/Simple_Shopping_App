@@ -79,9 +79,14 @@ class _LoginPageState extends State<LoginPage> {
                         setState(() {
                           userContainerDecoration =
                               defaultContainerInputDecoration;
+                          FocusScope.of(context).unfocus();
                         });
                       },
                       validator: (value) {
+                        debugPrint(value);
+                        if (value == '') {
+                          return AppErrorText.nocorrectemail;
+                        }
                         return null;
                       },
                       decoration: InputDecoration(
@@ -111,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         setState(() {
                           pswContainerDecoration =
                               defaultContainerInputDecoration;
+                          FocusScope.of(context).unfocus();
                         });
                       },
                       validator: (value) {
@@ -135,17 +141,22 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   children: [
                     Checkbox(
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        }),
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isChecked = !isChecked;
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        side: const BorderSide(color: Colors.grey),
+                      ),
+                    ),
                     const Text(AppText.remenberPsw),
                   ],
                 ),
                 const Text(
-                  AppText.addtocart,
+                  AppText.recoveryPsw,
                   style: TextStyle(
                       color: AppColors.brandLightTextColor, fontSize: 12),
                 )

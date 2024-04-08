@@ -16,9 +16,10 @@ class AppText {
   static const String orders = 'Pedidos';
   static const String profile = 'Perfil';
   static const String remenberPsw = 'Recordar contraseña';
-  static const String logInWith = 'Lon in with';
+  static const String logInWith = 'Log in with';
   static const String areAMember = 'No eres miembro?';
   static const String registerNow = 'Registrate ahora';
+  static const String recoveryPsw = 'Recuperar contraseña';
 }
 
 class AppErrorText {

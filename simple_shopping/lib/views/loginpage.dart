@@ -264,12 +264,17 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 70, left: 65),
-            child: const Row(
+            child: Row(
               children: [
-                Text(AppText.areAMember),
-                Text(
-                  AppText.registerNow,
-                  style: TextStyle(color: AppColors.brandOnFocusLoginFormColor),
+                const Text(AppText.areAMember),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, AppRoutes.sigin);
+                  },
+                  child: const Text(
+                    AppText.registerNow,
+                    style: TextStyle(color: AppColors.brandOnFocusLoginFormColor),
+                  ),
                 )
               ],
             ),

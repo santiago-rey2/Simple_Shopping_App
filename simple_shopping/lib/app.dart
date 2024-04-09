@@ -7,6 +7,7 @@ import 'package:simple_shopping/views/cartlist.dart';
 import 'package:simple_shopping/views/home.dart';
 import 'package:simple_shopping/views/loginpage.dart';
 import 'package:simple_shopping/views/productview.dart';
+import 'package:simple_shopping/views/sigin.dart';
 
 
 class MainApp extends StatelessWidget {
@@ -29,8 +30,10 @@ class MainApp extends StatelessWidget {
                     ProductView(item: settings.arguments as Product));
           case AppRoutes.cartview:
             return MaterialPageRoute(builder: (context)=> const CartList());
+          case AppRoutes.sigin:
+            return MaterialPageRoute(builder: (context)=> const SigInPage());
           default:
-            return MaterialPageRoute(builder: (context) => LoginPage());
+            return MaterialPageRoute(builder: (context) =>const  LoginPage());
         }
       },
     );

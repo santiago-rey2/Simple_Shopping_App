@@ -30,8 +30,8 @@ class MainApp extends StatelessWidget {
                     ProductView(item: settings.arguments as Product));
           case AppRoutes.cartview:
             return MaterialPageRoute(builder: (context)=> const CartList());
-          case AppRoutes.sigin:
-            return MaterialPageRoute(builder: (context)=> const SigInPage());
+          case AppRoutes.signin:
+            return MaterialPageRoute(builder: (context)=> const SignInPage());
           default:
             return MaterialPageRoute(builder: (context) =>const  LoginPage());
         }

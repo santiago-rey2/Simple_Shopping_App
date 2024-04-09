@@ -17,9 +17,12 @@ class AppText {
   static const String profile = 'Perfil';
   static const String remenberPsw = 'Recordar contraseña';
   static const String logInWith = 'Log in with';
+  static const String sigInWith = 'Sign in with';
   static const String areAMember = 'No eres miembro?';
   static const String registerNow = 'Registrate ahora';
   static const String recoveryPsw = 'Recuperar contraseña';
+  static const String sigIn = 'Sign In';
+  static const String or = 'Or';
 }
 
 class AppErrorText {

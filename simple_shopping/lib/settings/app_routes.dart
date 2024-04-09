@@ -5,5 +5,5 @@ class AppRoutes {
   static const String productlist = '/productlist';
   static const String productview = '/productview';
   static const String cartview = '/cartview';
-  static const String sigin = '/sigin';
+  static const String signin = '/signin';
 }

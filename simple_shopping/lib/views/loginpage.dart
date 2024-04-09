@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
+import 'package:simple_shopping/views/auxiliarboxes/Log/divisorlines.dart';
+import 'package:simple_shopping/views/auxiliarboxes/Log/loggoogl&facebook.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -186,82 +188,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 34),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 120,
-                    height: 1,
-                    decoration: const BoxDecoration(
-                        color: AppColors.brandDivisorLineColor),
-                  ),
-                  Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      child: const Text(AppText.logInWith)),
-                  Container(
-                    width: 120,
-                    height: 1,
-                    decoration: const BoxDecoration(
-                        color: AppColors.brandDivisorLineColor),
-                  ),
-                ],
-              ),
-            ),
+            child: const DivisorLines(middletext: AppText.logInWith),
           ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 60),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 160,
-                  height: 60,
-                  padding: const EdgeInsets.all(15),
-                  decoration: defaultBoxDecoration,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/LogoGoogleTransparente.png',
-                        width: 24,
-                        height: 24,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        child: const Text(
-                          AppText.loginwithgoogle,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 160,
-                  height: 60,
-                  padding: const EdgeInsets.all(15),
-                  decoration: defaultBoxDecoration,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/facebook-logo-2019.png',
-                        width: 24,
-                        height: 24,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        child: const Text(
-                          AppText.loginwithfacebook,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+          LogInWith(topmargin: 60,),
           Container(
             margin: const EdgeInsets.only(top: 70, left: 65),
             child: Row(
@@ -269,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text(AppText.areAMember),
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, AppRoutes.sigin);
+                    Navigator.pushNamed(context, AppRoutes.signin);
                   },
                   child: const Text(
                     AppText.registerNow,

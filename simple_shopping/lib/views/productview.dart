@@ -16,6 +16,11 @@ class ProductView extends StatelessWidget {
 
   const ProductView({Key? key, required this.item}) : super(key: key);
 
+  final labelStyle = const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black);
+
   @override
   Widget build(BuildContext context) {
     final Size windowsize = MediaQuery.of(context).size;
@@ -122,8 +127,8 @@ class ProductView extends StatelessWidget {
                     .read<ApiController>()
                     .addToCart(CartProduct(item: item, cantidad: 1));
               },
-              fontSize: 18,
               background: AppColors.brandAddButtonColor,
+              labelStyle: labelStyle
             ),
             //Boton Comprar ya
             ActionButton(
@@ -134,8 +139,8 @@ class ProductView extends StatelessWidget {
               function: () {
                 debugPrint('Comprar ya');
               },
-              fontSize: 18,
               background: AppColors.brandBuyButtonColor,
+              labelStyle: labelStyle
             ),
           ],
         ),

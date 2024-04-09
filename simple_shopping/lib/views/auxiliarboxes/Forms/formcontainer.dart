@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
 
 class FormsContainer extends StatefulWidget {
-  const FormsContainer({super.key});
+  final String? placeHolder;
+  final String? label;
+  final EdgeInsets? margin;
+  final EdgeInsetsGeometry? padding;
+
+  const FormsContainer(
+      {super.key, this.label, this.placeHolder, this.margin, this.padding});
 
   @override
   State<FormsContainer> createState() => _FormsContainerState();
 }
 
 class _FormsContainerState extends State<FormsContainer> {
+  late BoxDecoration containerDecoration;
 
-  late BoxDecoration userContainerDecoration;
-  late BoxDecoration pswContainerDecoration;
   final defaultInputBorder = InputBorder.none;
   final presentationTextStyle = const TextStyle(
       fontSize: 48,
@@ -28,30 +32,29 @@ class _FormsContainerState extends State<FormsContainer> {
   final defaultPaddingErrorFormText = const EdgeInsets.only(top: 1);
   final defaultLabelStyle = const TextStyle(
       color: AppColors.brandLightTextColor, fontWeight: FontWeight.normal);
-  
 
-@override
+  @override
   void initState() {
     super.initState;
-    userContainerDecoration = defaultContainerInputDecoration;
+    containerDecoration = defaultContainerInputDecoration;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 64,
-      padding: const EdgeInsets.only(left: 18),
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      decoration: userContainerDecoration,
+      padding: widget.padding,
+      margin: widget.margin,
+      decoration: containerDecoration,
       child: TextFormField(
         onTap: () {
           setState(() {
-            userContainerDecoration = activeContainerInputDecoration;
+            containerDecoration = activeContainerInputDecoration;
           });
         },
         onTapOutside: (event) {
           setState(() {
-            userContainerDecoration = defaultContainerInputDecoration;
+            containerDecoration = defaultContainerInputDecoration;
             FocusScope.of(context).unfocus();
           });
         },
@@ -61,8 +64,8 @@ class _FormsContainerState extends State<FormsContainer> {
         decoration: InputDecoration(
             border: defaultInputBorder,
             contentPadding: defaultPaddingErrorFormText,
-            hintText: AppText.usernameexample,
-            labelText: AppText.username,
+            hintText: widget.placeHolder,
+            labelText: widget.label,
             labelStyle: defaultLabelStyle),
       ),
     );

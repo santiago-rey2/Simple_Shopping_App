@@ -11,8 +11,7 @@ import 'package:simple_shopping/views/auxiliarboxes/common/containerview.dart';
 class ProductListContainer extends StatelessWidget {
   final Product item;
 
-
-  const ProductListContainer(this.item,{super.key});
+  const ProductListContainer(this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +35,15 @@ class ProductListContainer extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 30),
                 function: () {
                   debugPrint('Añadido al carrito');
-                  context.read<ApiController>().addToCart(CartProduct(item: item, cantidad: 1));
+                  context
+                      .read<ApiController>()
+                      .addToCart(CartProduct(item: item, cantidad: 1));
                 },
-                fontSize: 12,
                 background: Colors.amber[400],
+                labelStyle: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600),
                 tag: item.title),
           )),
     );

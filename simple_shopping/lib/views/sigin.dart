@@ -4,20 +4,23 @@ import 'package:simple_shopping/settings/colors.dart';
 import 'package:simple_shopping/views/auxiliarboxes/Forms/formcontainer.dart';
 import 'package:simple_shopping/views/auxiliarboxes/Log/divisorlines.dart';
 import 'package:simple_shopping/views/auxiliarboxes/Log/loggoogl&facebook.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
 
 class SignInPage extends StatefulWidget {
-   const SignInPage({super.key});
+  const SignInPage({super.key});
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
+  final _signInKey = GlobalKey<FormState>();
   final sigInTextStyle = const TextStyle(
       fontSize: 32,
       color: AppColors.brandInitalTextColor,
       fontWeight: FontWeight.w600);
-  
+  final registerButtonDecoration = const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10)));
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +44,78 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 50),
-                child: const DivisorLines(middletext: AppText.sigInWith)
+                  margin: const EdgeInsets.only(top: 50),
+                  child: const DivisorLines(middletext: AppText.sigInWith)),
+              LogInWith(
+                topmargin: 20,
               ),
-              LogInWith(topmargin: 20,),
               Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: const DivisorLines(middletext: AppText.or)),
+              Form(
+                  key: _signInKey,
+                  child: const Column(
+                    children: [
+                      FormsContainer(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(left: 18),
+                        label: AppText.username,
+                      ),
+                      FormsContainer(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(left: 18),
+                        label: AppText.email,
+                      ),
+                      FormsContainer(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(left: 18),
+                        label: AppText.password,
+                      ),
+                      FormsContainer(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(left: 18),
+                        label: AppText.repeatPsw,
+                      )
+                    ],
+                  )),
+              Container(
+                margin: const EdgeInsets.only(top: 45),
+                width: 344,
+                height: 50,
+                child: ActionButton(
+                  function: () {
+                    Navigator.pop(context);
+                  },
+                  label: AppText.getStarted,
+                  shape: registerButtonDecoration,
+                  labelStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.white),
+                ),
+              ),
+              Container(
+                height: 1,
+                width: 344,
                 margin: const EdgeInsets.only(top: 20),
-                child: const DivisorLines(middletext: AppText.or)),
-              const Form(child: Column(
-                children: [
-                  FormsContainer()
-                ],
-              ))
-              
+                decoration:
+                    const BoxDecoration(color: AppColors.brandDivisorLineColor),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 20, left: 65),
+                child: Row(
+                  children: [
+                    const Text(AppText.areAMember),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        AppText.login,
+                        style: TextStyle(
+                            color: AppColors.brandOnFocusLoginFormColor),
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -74,7 +136,7 @@ class FloatingButton extends StatelessWidget {
       child: FloatingActionButton(
           backgroundColor: AppColors.brandLightGreyColor,
           onPressed: () {
-            return print('pulsamos el boton');
+            Navigator.pop(context);
           },
           shape: const RoundedRectangleBorder(
               side: BorderSide(

@@ -44,12 +44,15 @@ class _CartListState extends State<CartList> {
           ActionButton(
             label: AppText.buynow,
             width: 344,
-            fontSize: 20,
             margin: const EdgeInsets.only(top: 4, bottom: 16),
             background: Colors.amber[400],
             function: () {
               debugPrint('Comprado');
             },
+            labelStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
           )
         ],
       ),

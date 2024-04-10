@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:simple_shopping/settings/app_routes.dart';
-import 'package:simple_shopping/settings/app_text.dart';
+import 'package:simple_shopping/settings/app_images.dart';
 import 'package:simple_shopping/settings/colors.dart';
+import 'package:simple_shopping/views/auxiliarboxes/home/search_container.dart';
 
 class AppHomeBar extends StatelessWidget implements PreferredSizeWidget {
   final String actualroute;
-  final Widget? leading;
-  const AppHomeBar({super.key, required this.actualroute,this.leading});
+  const AppHomeBar({super.key, required this.actualroute});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: leading,
       title: _AppHomeBarWidget(
         actualroute: actualroute,
       ),
@@ -33,17 +31,14 @@ class _AppHomeBarWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          AppText.apptitle,
-          style: TextStyle(color: Colors.black),
-        ),
-        IconButton(
-            onPressed: () {
-              if (AppRoutes.cartview != actualroute) {
-                Navigator.pushNamed(context, AppRoutes.cartview);
-              }
-            },
-            icon: const Icon(Icons.shopping_cart))
+        Container(
+          width: 50,
+          height: 50,
+          padding: const EdgeInsets.all(4),
+          margin: const EdgeInsets.only(right: 10),
+          decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(24))),
+          child: Image.asset(AppImages.logoGoogle)),
+        const SearchBox(width: 280,),
       ],
     );
   }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
+import 'package:simple_shopping/views/auxiliarboxes/Forms/formcontainer.dart';
 import 'package:simple_shopping/views/auxiliarboxes/Log/divisorlines.dart';
 import 'package:simple_shopping/views/auxiliarboxes/Log/loggoogl&facebook.dart';
+import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,6 +36,9 @@ class _LoginPageState extends State<LoginPage> {
       color: AppColors.brandLightGreyColor,
       borderRadius: BorderRadius.circular(8));
   final defaultPaddingErrorFormText = const EdgeInsets.only(top: 1);
+  final defaultDecorationButton = const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)));
+
   bool isChecked = false;
 
   @override
@@ -63,78 +68,29 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   //Box de texto para introducir el usuario
-                  Container(
-                    height: 64,
-                    padding: const EdgeInsets.only(left: 18),
+                  FormsContainer(
                     margin: const EdgeInsets.only(top: 50),
-                    decoration: userContainerDecoration,
-                    child: TextFormField(
-                      onTap: () {
-                        setState(() {
-                          userContainerDecoration =
-                              activeContainerInputDecoration;
-                          pswContainerDecoration =
-                              defaultContainerInputDecoration;
-                        });
-                      },
-                      onTapOutside: (event) {
-                        setState(() {
-                          userContainerDecoration =
-                              defaultContainerInputDecoration;
-                          FocusScope.of(context).unfocus();
-                        });
-                      },
-                      validator: (value) {
-                        debugPrint(value);
-                        if (value == '') {
-                          return AppErrorText.nocorrectemail;
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          border: defaultInputBorder,
-                          contentPadding: defaultPaddingErrorFormText,
-                          hintText: AppText.usernameexample,
-                          labelText: AppText.username,
-                          labelStyle: defaultLabelStyle),
-                    ),
+                    padding: const EdgeInsets.only(left: 18),
+                    label: AppText.username,
+                    placeHolder: AppText.usernameexample,
+                    validator: (value) {
+                      debugPrint(value);
+                      if (value == '') {
+                        return AppErrorText.nocorrectemail;
+                      }
+                      return null;
+                    },
                   ),
                   //Input Box de texto para introducir la contraseña del usuario
-                  Container(
-                    height: 64,
-                    decoration: pswContainerDecoration,
-                    padding: const EdgeInsets.only(left: 18),
-                    margin: const EdgeInsets.only(top: 20),
-                    child: TextFormField(
-                      onTap: () {
-                        setState(() {
-                          userContainerDecoration =
-                              defaultContainerInputDecoration;
-                          pswContainerDecoration =
-                              activeContainerInputDecoration;
-                        });
-                      },
-                      onTapOutside: (event) {
-                        setState(() {
-                          pswContainerDecoration =
-                              defaultContainerInputDecoration;
-                          FocusScope.of(context).unfocus();
-                        });
-                      },
-                      validator: (value) {
-                        return null;
-                      },
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: defaultInputBorder,
-                          contentPadding: defaultPaddingErrorFormText,
-                          hintText: AppText.password,
-                          label: const Text(AppText.password),
-                          labelStyle: defaultLabelStyle),
-                    ),
+                  const FormsContainer(
+                    margin: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(left: 18),
+                    label: AppText.password,
+                    placeHolder: AppText.password,
                   ),
                 ],
               )),
+          //Fila con checkbox y recuperar contraseña
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: Row(
@@ -166,43 +122,44 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           //Boton de acceso al log
-          Container(
+          ActionButton(
             width: 344,
             height: 50,
+            label: AppText.login,
             margin: const EdgeInsets.only(top: 66),
-            child: FloatingActionButton.extended(
-              backgroundColor: AppColors.brandLoginButtonColor,
-              onPressed: () {
+            background: AppColors.brandLoginButtonColor,
+            labelStyle: const TextStyle(fontSize: 20) ,
+            shape: defaultDecorationButton,
+            function: () {
                 if (_loginKey.currentState!.validate()) {
                   Navigator.pushReplacementNamed(
                       context, AppRoutes.productlist);
                 }
               },
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              label: const Text(
-                AppText.login,
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
           ),
+          //Barra de división con 
           Container(
-            margin: const EdgeInsets.only(top: 34),
+            margin: const EdgeInsets.only(top: 30),
             child: const DivisorLines(middletext: AppText.logInWith),
           ),
-          LogInWith(topmargin: 60,),
+          //Login con facebook y google
+          LogInWith(
+            margin: const EdgeInsets.only(top: 20),
+          ),
+          //Texto de acceso a registrarse
           Container(
-            margin: const EdgeInsets.only(top: 70, left: 65),
+            margin: const EdgeInsets.only(top: 130, left: 65),
             child: Row(
               children: [
                 const Text(AppText.notAreAMember),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, AppRoutes.signin);
                   },
                   child: const Text(
                     AppText.registerNow,
-                    style: TextStyle(color: AppColors.brandOnFocusLoginFormColor),
+                    style:
+                        TextStyle(color: AppColors.brandOnFocusLoginFormColor),
                   ),
                 )
               ],

@@ -6,9 +6,10 @@ class FormsContainer extends StatefulWidget {
   final String? label;
   final EdgeInsets? margin;
   final EdgeInsetsGeometry? padding;
+  final String? Function(String?)? validator;
 
   const FormsContainer(
-      {super.key, this.label, this.placeHolder, this.margin, this.padding});
+      {super.key, this.label, this.placeHolder, this.margin, this.padding,this.validator});
 
   @override
   State<FormsContainer> createState() => _FormsContainerState();
@@ -58,9 +59,7 @@ class _FormsContainerState extends State<FormsContainer> {
             FocusScope.of(context).unfocus();
           });
         },
-        validator: (value) {
-          return null;
-        },
+        validator: widget.validator,
         decoration: InputDecoration(
             border: defaultInputBorder,
             contentPadding: defaultPaddingErrorFormText,

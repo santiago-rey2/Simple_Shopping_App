@@ -4,7 +4,7 @@ import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/themes.dart';
 import 'package:simple_shopping/views/cartlist.dart';
-import 'package:simple_shopping/views/home.dart';
+import 'package:simple_shopping/views/productlist.dart';
 import 'package:simple_shopping/views/loginpage.dart';
 import 'package:simple_shopping/views/productview.dart';
 import 'package:simple_shopping/views/sigin.dart';

@@ -47,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
                   margin: const EdgeInsets.only(top: 50),
                   child: const DivisorLines(middletext: AppText.sigInWith)),
               LogInWith(
-                topmargin: 20,
+                margin: const EdgeInsets.only(top: 20),
               ),
               Container(
                   margin: const EdgeInsets.only(top: 20),
@@ -88,7 +88,7 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   label: AppText.getStarted,
                   shape: registerButtonDecoration,
-                  labelStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.white),
+                  labelStyle: const TextStyle(fontSize: 20,color: Colors.white),
                 ),
               ),
               Container(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Forms/formcontainer.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Log/divisorlines.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Log/loggoogl&facebook.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Forms/formcontainer.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Log/divisorlines.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Log/loggoogl&facebook.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/acctionsbutton.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

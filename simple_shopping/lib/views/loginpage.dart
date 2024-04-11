@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Forms/formcontainer.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Log/divisorlines.dart';
-import 'package:simple_shopping/views/auxiliarboxes/Log/loggoogl&facebook.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Forms/formcontainer.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Log/divisorlines.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/Log/loggoogl&facebook.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/acctionsbutton.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
             function: () {
                 if (_loginKey.currentState!.validate()) {
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.productlist);
+                      context, AppRoutes.home);
                 }
               },
           ),

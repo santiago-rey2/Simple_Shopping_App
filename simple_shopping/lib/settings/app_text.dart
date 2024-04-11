@@ -13,8 +13,6 @@ class AppText {
   static const String loginwithgoogle = 'Google';
   static const String loginwithfacebook = 'Facebook';
   static const String categories = 'Categorias';
-  static const String orders = 'Pedidos';
-  static const String profile = 'Perfil';
   static const String remenberPsw = 'Recordar contraseña';
   static const String logInWith = 'Log in with';
   static const String sigInWith = 'Sign in with';
@@ -27,6 +25,11 @@ class AppText {
   static const String repeatPsw = 'Repite la contraseña';
   static const String getStarted = 'Registarse';
   static const String areAMember = 'Ya tienes una cuenta?';
+  static const String home = 'Home';
+  static const String cart = 'Carrito';
+  static const String orders = 'Pedidos';
+  static const String profile = 'Perfil';
+  static const String miscelaneous = 'Miscelaneo';
 }
 
 class AppErrorText {

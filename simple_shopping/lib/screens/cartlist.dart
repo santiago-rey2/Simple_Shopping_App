@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
-import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/apphomebar.dart';
-import 'package:simple_shopping/views/auxiliarboxes/cart/cart_list_container.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/acctionsbutton.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/apphomebar.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/cart/cart_list_container.dart';
 
 class CartList extends StatefulWidget {
   const CartList({super.key});
@@ -24,7 +23,7 @@ class _CartListState extends State<CartList> {
         context.watch<ApiController>().cart;
     double cartprice = context.watch<ApiController>().totalprice;
     return Scaffold(
-      appBar: const AppHomeBar(actualroute: AppRoutes.cartview),
+      appBar: const AppHomeBar(),
       body: Column(
         children: [
           Expanded(

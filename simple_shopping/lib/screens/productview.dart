@@ -3,13 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/models/product/product.dart';
-import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/acctionsbutton.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/apphomebar.dart';
-import 'package:simple_shopping/views/auxiliarboxes/product/menucantidades.dart';
-import 'package:simple_shopping/views/auxiliarboxes/common/ratingsstars.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/acctionsbutton.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/apphomebar.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/product/menucantidades.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/common/ratingsstars.dart';
 
 class ProductView extends StatelessWidget {
   final Product item;
@@ -25,7 +24,7 @@ class ProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size windowsize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: const AppHomeBar(actualroute: AppRoutes.productview),
+      appBar: const AppHomeBar(searchWidth: 235,),
       body: SingleChildScrollView(
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.center,

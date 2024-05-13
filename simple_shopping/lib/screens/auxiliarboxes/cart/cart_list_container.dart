@@ -7,7 +7,10 @@ import 'package:simple_shopping/screens/auxiliarboxes/cart/countitemsbox.dart';
 class CartListContainer extends StatelessWidget {
   final CartProduct cartitem;
 
-  const CartListContainer({super.key, required this.cartitem});
+  CartListContainer({super.key, required this.cartitem});
+
+  final tileDecoration = BoxDecoration(
+            color: Colors.grey[300], borderRadius: BorderRadius.circular(8));
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +23,7 @@ class CartListContainer extends StatelessWidget {
         width: 344,
         height: 150,
         margin: const EdgeInsets.only(top: 4, left: 8, right: 8),
-        decoration: BoxDecoration(
-            color: Colors.grey[300], borderRadius: BorderRadius.circular(8)),
+        decoration: tileDecoration,
         child: Containerview(
             item: cartitem.item,
             button: CountItemBox(

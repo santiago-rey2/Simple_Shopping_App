@@ -9,7 +9,7 @@ class Ratings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingStars(
-      value: item.rating?.rate ?? 0.0,
+      value: item.rating.rate,
       valueLabelColor: Colors.transparent,
       valueLabelTextStyle: const TextStyle(
           color: Colors.black,

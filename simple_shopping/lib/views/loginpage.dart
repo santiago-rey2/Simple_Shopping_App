@@ -75,9 +75,9 @@ class _LoginPageState extends State<LoginPage> {
                     placeHolder: AppText.usernameexample,
                     validator: (value) {
                       debugPrint(value);
-                      if (value == '') {
-                        return AppErrorText.nocorrectemail;
-                      }
+                      //if (value == '') {
+                      //  return AppErrorText.nocorrectemail;
+                      //}
                       return null;
                     },
                   ),

@@ -6,12 +6,12 @@ class CartProduct {
   CartProduct({required this.item,required this.cantidad});
 
 
-  void increaseCount(){
-    cantidad++;
+  void increaseCount(int value){
+    cantidad += value;
   }
 
-  void decreaseCount(){
-    cantidad--;
+  void decreaseCount(int value){
+    cantidad -= value;
   }
 
   @override

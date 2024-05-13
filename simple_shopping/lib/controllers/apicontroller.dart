@@ -10,11 +10,13 @@ class ApiController extends ChangeNotifier {
 
   List<Product> _products = [];
   List<CartProduct> _cart = [];
-  double _totalcartrpice = 0 ;
+  double _totalcartrpice = 0;
+  int _quantitie = 1;
+
   UnmodifiableListView<Product> get products => UnmodifiableListView(_products);
   UnmodifiableListView<CartProduct> get cart => UnmodifiableListView(_cart);
   double get totalprice => _totalcartrpice;
-
+  int get cartQuantitie => _quantitie;
 
   void getAllProsducts() async {
     _products = await _fetchproducts();
@@ -24,22 +26,29 @@ class ApiController extends ChangeNotifier {
   void addToCart(CartProduct p) {
     if (!_cart.contains(p)) {
       _cart.add(p);
-    }else{
-      int aux =_cart.indexOf(p);
-      _cart.elementAt(aux).increaseCount();
+    } else {
+      int aux = _cart.indexOf(p);
+      _cart.elementAt(aux).increaseCount(p.cantidad);
     }
-    _totalcartrpice = double.parse((_totalcartrpice + p.item.price).toStringAsFixed(2));
+    _totalcartrpice = double.parse(
+        (_totalcartrpice + p.item.price * p.cantidad).toStringAsFixed(2));
     notifyListeners();
   }
 
-  void removeFromCart(CartProduct p){
+  void removeFromCart(CartProduct p) {
     int aux = _cart.indexOf(p);
-    if(_cart.elementAt(aux).cantidad > 1){
-      _cart.elementAt(aux).decreaseCount();
-    }else{
-       _cart.remove(p);
+    if (_cart.elementAt(aux).cantidad > 1) {
+      _cart.elementAt(aux).decreaseCount(1);
+    } else {
+      _cart.remove(p);
     }
-     _totalcartrpice = double.parse((_totalcartrpice - p.item.price).toStringAsFixed(2));
+    _totalcartrpice =
+        double.parse((_totalcartrpice - p.item.price).toStringAsFixed(2));
+    notifyListeners();
+  }
+
+  void setQuantitie(int value) {
+    _quantitie = value;
     notifyListeners();
   }
 

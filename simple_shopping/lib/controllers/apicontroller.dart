@@ -12,11 +12,13 @@ class ApiController extends ChangeNotifier {
   List<CartProduct> _cart = [];
   double _totalcartrpice = 0;
   int _quantitie = 1;
+  int _bottonNavigationPage = 0;
 
   UnmodifiableListView<Product> get products => UnmodifiableListView(_products);
   UnmodifiableListView<CartProduct> get cart => UnmodifiableListView(_cart);
   double get totalprice => _totalcartrpice;
   int get cartQuantitie => _quantitie;
+  int get getBottonNavigationPage => _bottonNavigationPage;
 
   void getAllProsducts() async {
     _products = await _fetchproducts();
@@ -49,6 +51,11 @@ class ApiController extends ChangeNotifier {
 
   void setQuantitie(int value) {
     _quantitie = value;
+    notifyListeners();
+  }
+
+  void changePage(int value) {
+    _bottonNavigationPage = value;
     notifyListeners();
   }
 

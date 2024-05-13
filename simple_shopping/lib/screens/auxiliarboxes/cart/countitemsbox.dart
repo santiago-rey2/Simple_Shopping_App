@@ -8,19 +8,17 @@ class CountItemBox extends StatefulWidget {
   const CountItemBox({super.key,required this.item});
 
     @override
-  State<CountItemBox> createState() => _CountItemBox(item: item);
+  State<CountItemBox> createState() => _CountItemBox();
 
 }
 
 class _CountItemBox extends State<CountItemBox>{
-  CartProduct item;
-  _CountItemBox({required this.item});
   @override
   Widget build(BuildContext context) {
     Icon deleteicon;
     
 
-    if (item.cantidad > 1) {
+    if (widget.item.cantidad > 1) {
       deleteicon = const Icon(Icons.remove_rounded);
     } else {
       deleteicon = const Icon(Icons.delete_rounded);
@@ -42,13 +40,13 @@ class _CountItemBox extends State<CountItemBox>{
                 borderRadius: BorderRadius.circular(8)),
             child: IconButton(
               onPressed: () {
-                context.read<ApiController>().removeFromCart(item);
+                context.read<ApiController>().removeFromCart(widget.item);
               },
               icon: deleteicon,
               iconSize: 24,
             ),
           ),
-          Text('${item.cantidad}'),
+          Text('${widget.item.cantidad}'),
           Container(
             width: 40,
             height: 40,
@@ -57,7 +55,7 @@ class _CountItemBox extends State<CountItemBox>{
                 borderRadius: BorderRadius.circular(8)),
             child: IconButton(
               onPressed: () {
-                context.read<ApiController>().addToCart(item);
+                context.read<ApiController>().addToCart(CartProduct(item: widget.item.item, cantidad: 1));
               },
               icon: const Icon(Icons.add_rounded),
               iconSize: 24,

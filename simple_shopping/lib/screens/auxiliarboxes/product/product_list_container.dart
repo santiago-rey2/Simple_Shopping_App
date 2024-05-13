@@ -18,6 +18,7 @@ class ProductListContainer extends StatelessWidget {
     //final Size windowsize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
+        context.read<ApiController>().setQuantitie(1);
         Navigator.pushNamed(context, AppRoutes.productview, arguments: item);
       },
       child: Container(

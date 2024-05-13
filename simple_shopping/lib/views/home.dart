@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/screens/cartlist.dart';
 import 'package:simple_shopping/screens/miscelaneous.dart';
 import 'package:simple_shopping/screens/productlist.dart';
@@ -32,10 +34,10 @@ class _HomePageState extends State<HomePage> {
         label: AppText.miscelaneous)
   ];
 
-  int listCurrentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    int listCurrentIndex =
+        context.watch<ApiController>().getBottonNavigationPage;
     return Scaffold(
       body: IndexedStack(
         index: listCurrentIndex,
@@ -50,9 +52,7 @@ class _HomePageState extends State<HomePage> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (value) {
-          setState(() {
-            listCurrentIndex = value;
-          });
+          context.read<ApiController>().changePage(value);
         },
       ),
     );

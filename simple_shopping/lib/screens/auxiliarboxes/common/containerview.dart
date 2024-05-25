@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/product/product.dart';
-import 'package:simple_shopping/screens/auxiliarboxes/common/ratingsstars.dart';
 
 class Containerview extends StatelessWidget {
   final Product item;
@@ -18,7 +17,7 @@ class Containerview extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              item.image,
+              item.images.first,
               width: 80,
               height: 120,
             ),
@@ -39,10 +38,6 @@ class Containerview extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
             ),
-            Container(
-                margin: const EdgeInsets.only(top: 12, bottom: 14, left: 8),
-                height: 24,
-                child: Ratings(item: item)),
             Container(
               margin: const EdgeInsets.only(top: 4, left: 8),
               child: Row(

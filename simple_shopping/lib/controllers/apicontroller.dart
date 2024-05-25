@@ -1,15 +1,19 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
+import 'package:simple_shopping/models/categoriesmodel.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:simple_shopping/models/productsmodel.dart';
+import 'package:simple_shopping/settings/app_url.dart';
 
 class ApiController extends ChangeNotifier {
   final ProductsModel _model = ProductsModel();
+  final CategoryModel _categoryModel = CategoryModel();
 
   List<Product> _products = [];
   List<CartProduct> _cart = [];
+  List<String> _categories = [];
   double _totalcartrpice = 0;
   int _quantitie = 1;
   int _bottonNavigationPage = 0;
@@ -22,6 +26,7 @@ class ApiController extends ChangeNotifier {
 
   void getAllProsducts() async {
     _products = await _fetchproducts();
+    _categories = await _categoryModel.fetchCategories();
     notifyListeners();
   }
 
@@ -60,7 +65,7 @@ class ApiController extends ChangeNotifier {
   }
 
   Future<List<Product>> _fetchproducts() async {
-    var url = Uri.parse('https://fakestoreapi.com/products');
+    var url = Uri.parse(AppUrls.productUrlApi);
 
     try {
       var response = await http.get(url);

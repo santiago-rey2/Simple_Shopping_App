@@ -1,6 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:simple_shopping/models/users/address.dart';
-import 'package:simple_shopping/models/users/name.dart';
 
 part 'users.g.dart';
 
@@ -8,22 +6,18 @@ part 'users.g.dart';
 class User {
   int id;
   String email;
-  String username;
   String password;
-  Name? name;
-  Address? address;
-  String phone;
+  String name;
   String role;
+  String avatar;
 
   User(
       {required this.id,
-      this.address,
       required this.email,
-      this.name,
+      required this.name,
       required this.password,
-      required this.phone,
-      required this.username,
-      this.role = "Admin"});
+      required this.role,
+      required this.avatar});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -31,6 +25,6 @@ class User {
 
   @override
   String toString() {
-    return toJson().toString();
+    return 'User  id : $id email : $email password : $password name : $name role : $role ';
   }
 }

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'rating.dart';
+import 'package:simple_shopping/models/product/category.dart';
 
 part 'product.g.dart';
 
@@ -9,9 +9,8 @@ class Product {
   String title;
   double price;
   String description;
-  String category;
-  String image;
-  Rating rating;
+  ProductCategory category;
+  List<String> images;
 
   Product({
     required this.id,
@@ -19,13 +18,12 @@ class Product {
     required this.price,
     required this.description,
     required this.category,
-    required this.image,
-    required this.rating,
+    required this.images,
   });
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, price: $price, description: $description, category: $category, image: $image, rating: $rating)';
+    return 'Product(id: $id, title: $title, price: $price, description: $description, category: $category, image: $images)';
   }
 
   factory Product.fromJson(Map<String, dynamic> json) =>

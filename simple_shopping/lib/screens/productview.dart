@@ -8,7 +8,6 @@ import 'package:simple_shopping/settings/colors.dart';
 import 'package:simple_shopping/screens/auxiliarboxes/common/acctionsbutton.dart';
 import 'package:simple_shopping/screens/auxiliarboxes/common/apphomebar.dart';
 import 'package:simple_shopping/screens/auxiliarboxes/product/menucantidades.dart';
-import 'package:simple_shopping/screens/auxiliarboxes/common/ratingsstars.dart';
 
 class ProductView extends StatelessWidget {
   final Product item;
@@ -65,8 +64,7 @@ class ProductView extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    item.image,
-                    width: 180,
+                    item.images.first,
                     fit: BoxFit.scaleDown,
                   ),
                 ),
@@ -78,7 +76,6 @@ class ProductView extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Ratings(item: item),
                       Text(
                         '${item.price.toString()} €',
                         softWrap: true,

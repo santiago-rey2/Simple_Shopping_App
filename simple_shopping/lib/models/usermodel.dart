@@ -1,36 +1,13 @@
 import 'dart:convert';
 import 'package:simple_shopping/models/users/users.dart';
 import 'package:http/http.dart' as http;
+import 'package:simple_shopping/settings/app_url.dart';
 
-void main() async {
-  User u = await UserModel().fetchuser();
-  List<User> users = await UserModel().fetchuserslist();
-
-  User user = User(
-      id: 1,
-      email: " ",
-      password: " ",
-      phone: " ",
-      username: " ",
-      role: "Pepito");
-
-  User user2 = User(
-    id: 1,
-    email: " ",
-    password: " ",
-    phone: " ",
-    username: " ",
-  );
-
-  print(u);
-  print(user);
-  print(user2);
-  print(users);
-}
 
 class UserModel {
+
   Future<User> fetchuser() async {
-    var url = Uri.parse('https://fakestoreapi.com/users/1');
+    var url = Uri.parse(AppUrls.userUrlApi);
 
     try {
       var response = await http.get(url);
@@ -48,7 +25,7 @@ class UserModel {
   }
 
   Future<List<User>> fetchuserslist() async {
-    var url = Uri.parse('https://fakestoreapi.com/users');
+    var url = Uri.parse(AppUrls.usersUrl);
 
     try {
       var response = await http.get(url);

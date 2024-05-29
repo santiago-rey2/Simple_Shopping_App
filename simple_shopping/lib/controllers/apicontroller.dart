@@ -1,27 +1,42 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
+import 'package:simple_shopping/models/categoriesmodel.dart';
 import 'package:simple_shopping/models/product/product.dart';
-import 'package:http/http.dart' as http;
 import 'package:simple_shopping/models/productsmodel.dart';
 
 class ApiController extends ChangeNotifier {
-  final ProductsModel _model = ProductsModel();
+  final ProductsModel _pmodel = ProductsModel();
+  final CategoryModel _cmodel = CategoryModel();
 
   List<Product> _products = [];
   List<CartProduct> _cart = [];
+  List<String> _categories = [];
+  List<Product> _productsview = [];
   double _totalcartrpice = 0;
   int _quantitie = 1;
   int _bottonNavigationPage = 0;
+  String _actualcategory = '';
 
-  UnmodifiableListView<Product> get products => UnmodifiableListView(_products);
+  UnmodifiableListView<Product> get products =>
+      UnmodifiableListView(_productsview);
   UnmodifiableListView<CartProduct> get cart => UnmodifiableListView(_cart);
+  List<String> get category => _categories;
   double get totalprice => _totalcartrpice;
   int get cartQuantitie => _quantitie;
   int get getBottonNavigationPage => _bottonNavigationPage;
+  String get actualCategory => _actualcategory;
 
-  void getAllProsducts() async {
-    _products = await _fetchproducts();
+  void getAllProducts() async {
+    _products = await _pmodel.fetchproducts();
+    filterobjects('All');
+    notifyListeners();
+  }
+
+  void getAllCategories() async {
+    _categories = await _cmodel.fetchcategorieslist();
+    _categories.add('All');
+    _actualcategory = _categories.last;
     notifyListeners();
   }
 
@@ -49,8 +64,26 @@ class ApiController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void filterobjects(String category) {
+    if (_categories.contains(category)) {
+      if (category != 'All') {
+        _productsview = List.from(
+            _products.where((element) => element.category == category));
+      } else {
+        _productsview = List.from(_products);
+      }
+    }
+    notifyListeners();
+  }
+
   void setQuantitie(int value) {
     _quantitie = value;
+    notifyListeners();
+  }
+
+  void setCategory(String value) {
+    _actualcategory = value;
+    filterobjects(_actualcategory);
     notifyListeners();
   }
 
@@ -59,19 +92,5 @@ class ApiController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Product>> _fetchproducts() async {
-    var url = Uri.parse('https://fakestoreapi.com/products');
-
-    try {
-      var response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        return _model.fetchproductslist(response);
-      } else {
-        throw 'Request failed with status: ${response.statusCode}';
-      }
-    } catch (e) {
-      throw 'Exception occurred: $e';
-    }
-  }
+  
 }

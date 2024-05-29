@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/screens/auxiliarboxes/common/apphomebar.dart';
+import 'package:simple_shopping/screens/auxiliarboxes/home/categoryfilter.dart';
 import 'package:simple_shopping/screens/auxiliarboxes/product/product_list_container.dart';
 import 'package:simple_shopping/settings/colors.dart';
 
@@ -19,13 +20,16 @@ class _ProductListState extends State<ProductList> {
   void initState() {
     super.initState();
     //Carga de datos de la tienda
-    Provider.of<ApiController>(context, listen: false).getAllProsducts();
+    Provider.of<ApiController>(context, listen: false).getAllProducts();
+    Provider.of<ApiController>(context, listen: false).getAllCategories();
   }
 
   @override
   Widget build(BuildContext context) {
     UnmodifiableListView<Product> list =
         context.watch<ApiController>().products;
+    List<String> categories = context.watch<ApiController>().category;
+
     return Scaffold(
       appBar: const AppHomeBar(),
       body: Column(
@@ -34,9 +38,15 @@ class _ProductListState extends State<ProductList> {
             height: 45,
             child: Row(
               children: [
-                Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
-                    child: const Text('Filtros')),
+                GestureDetector(
+                  onTap: () {
+                    debugPrint(categories.toString());
+                  },
+                  child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      width: 150,
+                      child: CategoryFilter(categories: categories,)),
+                ),
                 Container(
                   width: 1,
                   decoration: const BoxDecoration(

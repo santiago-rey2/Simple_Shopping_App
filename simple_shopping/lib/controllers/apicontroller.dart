@@ -4,10 +4,13 @@ import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/models/categoriesmodel.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/models/productsmodel.dart';
+import 'package:simple_shopping/models/usermodel.dart';
+import 'package:simple_shopping/models/users/users.dart';
 
 class ApiController extends ChangeNotifier {
   final ProductsModel _pmodel = ProductsModel();
   final CategoryModel _cmodel = CategoryModel();
+  final UserModel _userModel = UserModel();
 
   List<Product> _products = [];
   List<CartProduct> _cart = [];
@@ -17,6 +20,7 @@ class ApiController extends ChangeNotifier {
   int _quantitie = 1;
   int _bottonNavigationPage = 0;
   String _actualcategory = '';
+  User? _userdata;
 
   UnmodifiableListView<Product> get products =>
       UnmodifiableListView(_productsview);
@@ -26,6 +30,7 @@ class ApiController extends ChangeNotifier {
   int get cartQuantitie => _quantitie;
   int get getBottonNavigationPage => _bottonNavigationPage;
   String get actualCategory => _actualcategory;
+  User? get getuserData => _userdata;
 
   void getAllProducts() async {
     _products = await _pmodel.fetchproducts();
@@ -76,6 +81,11 @@ class ApiController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void userLoged() async {
+    _userdata = await _userModel.fetchuser();
+    notifyListeners();
+  }
+
   void setQuantitie(int value) {
     _quantitie = value;
     notifyListeners();
@@ -91,6 +101,4 @@ class ApiController extends ChangeNotifier {
     _bottonNavigationPage = value;
     notifyListeners();
   }
-
-  
 }

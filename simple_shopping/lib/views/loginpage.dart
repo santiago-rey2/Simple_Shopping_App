@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
@@ -37,13 +39,14 @@ class _LoginPageState extends State<LoginPage> {
       borderRadius: BorderRadius.circular(8));
   final defaultPaddingErrorFormText = const EdgeInsets.only(top: 1);
   final defaultDecorationButton = const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)));
+      borderRadius: BorderRadius.all(Radius.circular(10)));
 
   bool isChecked = false;
 
   @override
   void initState() {
     super.initState;
+
     userContainerDecoration = defaultContainerInputDecoration;
     pswContainerDecoration = defaultContainerInputDecoration;
   }
@@ -128,16 +131,17 @@ class _LoginPageState extends State<LoginPage> {
             label: AppText.login,
             margin: const EdgeInsets.only(top: 66),
             background: AppColors.brandLoginButtonColor,
-            labelStyle: const TextStyle(fontSize: 20) ,
+            labelStyle: const TextStyle(fontSize: 20),
             shape: defaultDecorationButton,
             function: () {
-                if (_loginKey.currentState!.validate()) {
-                  Navigator.pushReplacementNamed(
-                      context, AppRoutes.home);
-                }
-              },
+              if (_loginKey.currentState!.validate()) {
+                Provider.of<ApiController>(context,listen: false).userLoged();
+                
+                Navigator.pushReplacementNamed(context, AppRoutes.home);
+              }
+            },
           ),
-          //Barra de división con 
+          //Barra de división con
           Container(
             margin: const EdgeInsets.only(top: 30),
             child: const DivisorLines(middletext: AppText.logInWith),

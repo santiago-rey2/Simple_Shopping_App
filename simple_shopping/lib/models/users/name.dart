@@ -15,6 +15,6 @@ class Name {
 
   @override
   String toString() {
-    return toJson().toString();
+    return '$firstname $lastname';
   }
 }

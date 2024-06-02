@@ -1,12 +1,12 @@
 import 'dart:convert';
+import 'package:simple_shopping/models/product/category.dart';
 import 'package:simple_shopping/models/product/product.dart';
 import 'package:simple_shopping/models/users/users.dart';
 import 'package:http/http.dart' as http;
 import 'package:simple_shopping/settings/app_url.dart';
 
 class APIModels {
-
-  Future<List<Product>> fetchAllProducts() async{
+  Future<List<Product>> fetchAllProducts() async {
     var url = Uri.parse(AppUrls.productUrlApi);
 
     try {
@@ -14,25 +14,9 @@ class APIModels {
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
-        return List.from(data.cast());
-      } else {
-        throw 'Request failed with status: ${response.statusCode}';
-      }
-    } catch (e) {
-      throw 'Exception occurred: $e';
-    }
-  }
-
-  Future<List<Product>> fetchproducts() async {
-    var url = Uri.parse(AppUrls.productUrlApi);
-
-    try {
-      var response = await http.get(url);
-
-      if (response.statusCode == 200) {
-          List<dynamic> data = json.decode(response.body);
-          List<Product> products = List.from(data.map((e) => Product.fromJson(e)));
-          return products;
+        List<Product> products =
+            List.from(data.map((e) => Product.fromJson(e)));
+        return products;
       } else {
         throw 'Request failed with status: ${response.statusCode}';
       }
@@ -78,7 +62,7 @@ class APIModels {
     }
   }
 
-  Future<List<String>> fetchCategories() async {
+  Future<List<ProductCategory>> fetchCategories() async {
     var url = Uri.parse(AppUrls.categoriesUrlApi);
 
     try {
@@ -86,7 +70,9 @@ class APIModels {
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
-        return List.from(data.cast());
+        List<ProductCategory> categories =
+            List.from(data.map((e) => ProductCategory.fromJson(e)));
+        return categories;
       } else {
         throw 'Request failed with status: ${response.statusCode}';
       }
@@ -94,5 +80,4 @@ class APIModels {
       throw 'Exception occurred: $e';
     }
   }
-  
 }

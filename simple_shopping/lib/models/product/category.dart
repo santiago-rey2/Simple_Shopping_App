@@ -6,9 +6,9 @@ part 'category.g.dart';
 class ProductCategory {
   int id;
   String name;
-  String image;
+  String? image;
 
-  ProductCategory({required this.id, required this.name, required this.image});
+  ProductCategory({required this.id, required this.name, this.image});
 
   @override
   String toString() {

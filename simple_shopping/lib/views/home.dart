@@ -35,6 +35,12 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ApiController>(context, listen: false).getAllProsducts(); 
+  }
+
+  @override
   Widget build(BuildContext context) {
     int listCurrentIndex =
         context.watch<ApiController>().getBottonNavigationPage;

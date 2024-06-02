@@ -1,7 +1,8 @@
 import 'dart:collection';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
 import 'package:simple_shopping/models/model.dart';
+import 'package:simple_shopping/models/product/category.dart';
 import 'package:simple_shopping/models/product/product.dart';
 
 class ApiController extends ChangeNotifier {
@@ -9,21 +10,29 @@ class ApiController extends ChangeNotifier {
 
   List<Product> _products = [];
   final List<CartProduct> _cart = [];
-  List<String> _categories = [];
+  List<ProductCategory> _categories = [];
   double _totalcartrpice = 0;
   int _quantitie = 1;
   int _bottonNavigationPage = 0;
+  ProductCategory _actualcategory = ProductCategory(id: 10, name: 'All');
 
   UnmodifiableListView<Product> get products => UnmodifiableListView(_products);
   UnmodifiableListView<CartProduct> get cart => UnmodifiableListView(_cart);
   double get totalprice => _totalcartrpice;
   int get cartQuantitie => _quantitie;
   int get getBottonNavigationPage => _bottonNavigationPage;
-  List<String> get categories => _categories;
+  List<ProductCategory> get categories => _categories;
+  ProductCategory get actualcategory => _actualcategory;
 
   void getAllProsducts() async {
-    _products = await _model.fetchproducts();
+    _products = await _model.fetchAllProducts();
+    notifyListeners();
+  }
+
+  void getCategories() async {
     _categories = await _model.fetchCategories();
+    _categories.add(ProductCategory(id: 10, name: 'All'));
+    _actualcategory = _categories.last;
     notifyListeners();
   }
 
@@ -48,6 +57,11 @@ class ApiController extends ChangeNotifier {
     }
     _totalcartrpice =
         double.parse((_totalcartrpice - p.item.price).toStringAsFixed(2));
+    notifyListeners();
+  }
+
+  void setCategory(ProductCategory value) {
+    _actualcategory = value;
     notifyListeners();
   }
 

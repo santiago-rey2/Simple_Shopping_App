@@ -31,9 +31,9 @@ class ProductListContainer extends StatelessWidget {
             item: item,
             button: ActionButton(
                 label: AppText.addtocart,
-                width: 130,
+                width: 120,
                 height: 35,
-                margin: const EdgeInsets.only(left: 30),
+                margin: const EdgeInsets.only(left: 50),
                 function: () {
                   debugPrint('Añadido al carrito');
                   context

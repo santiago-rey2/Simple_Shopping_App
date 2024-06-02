@@ -1,18 +1,14 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:simple_shopping/models/cartproduct/cartproduct.dart';
-import 'package:simple_shopping/models/categoriesmodel.dart';
+import 'package:simple_shopping/models/model.dart';
 import 'package:simple_shopping/models/product/product.dart';
-import 'package:http/http.dart' as http;
-import 'package:simple_shopping/models/productsmodel.dart';
-import 'package:simple_shopping/settings/app_url.dart';
 
 class ApiController extends ChangeNotifier {
-  final ProductsModel _model = ProductsModel();
-  final CategoryModel _categoryModel = CategoryModel();
+  final APIModels _model = APIModels();
 
   List<Product> _products = [];
-  List<CartProduct> _cart = [];
+  final List<CartProduct> _cart = [];
   List<String> _categories = [];
   double _totalcartrpice = 0;
   int _quantitie = 1;
@@ -23,10 +19,11 @@ class ApiController extends ChangeNotifier {
   double get totalprice => _totalcartrpice;
   int get cartQuantitie => _quantitie;
   int get getBottonNavigationPage => _bottonNavigationPage;
+  List<String> get categories => _categories;
 
   void getAllProsducts() async {
-    _products = await _fetchproducts();
-    _categories = await _categoryModel.fetchCategories();
+    _products = await _model.fetchproducts();
+    _categories = await _model.fetchCategories();
     notifyListeners();
   }
 
@@ -62,21 +59,5 @@ class ApiController extends ChangeNotifier {
   void changePage(int value) {
     _bottonNavigationPage = value;
     notifyListeners();
-  }
-
-  Future<List<Product>> _fetchproducts() async {
-    var url = Uri.parse(AppUrls.productUrlApi);
-
-    try {
-      var response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        return _model.fetchproductslist(response);
-      } else {
-        throw 'Request failed with status: ${response.statusCode}';
-      }
-    } catch (e) {
-      throw 'Exception occurred: $e';
-    }
   }
 }

@@ -18,17 +18,18 @@ class Containerview extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
               item.images.first,
-              width: 80,
-              height: 120,
+              height: 130,
+              
             ),
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               margin: const EdgeInsets.only(top: 8, left: 8),
-              width: 250,
+              width: 240,
               child: Text(
                 item.title,
                 softWrap: true,
@@ -39,12 +40,11 @@ class Containerview extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 4, left: 8),
+              margin: const EdgeInsets.only(top: 4, left: 8,bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 100,
                     child: Text(
                       '${item.price} €',
                       softWrap: true,

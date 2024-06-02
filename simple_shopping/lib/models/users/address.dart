@@ -26,6 +26,6 @@ class Address {
 
   @override
   String toString() {
-    return toJson().toString();
+    return '$city, $street $number ';
   }
 }

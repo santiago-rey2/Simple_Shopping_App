@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:simple_shopping/controllers/apicontroller.dart';
 import 'package:simple_shopping/settings/app_routes.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 import 'package:simple_shopping/settings/colors.dart';
@@ -133,10 +131,8 @@ class _LoginPageState extends State<LoginPage> {
             background: AppColors.brandLoginButtonColor,
             labelStyle: const TextStyle(fontSize: 20),
             shape: defaultDecorationButton,
-            function: () {
+            function: ()  {
               if (_loginKey.currentState!.validate()) {
-                Provider.of<ApiController>(context,listen: false).userLoged();
-                
                 Navigator.pushReplacementNamed(context, AppRoutes.home);
               }
             },

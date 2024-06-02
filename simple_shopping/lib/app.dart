@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
           case AppRoutes.signin:
             return MaterialPageRoute(builder: (context) => const SignInPage());
           case AppRoutes.home:
-            return MaterialPageRoute(builder: (context) => const HomePage());
+            return MaterialPageRoute(builder: (context) => const HomePage() );
           default:
             return MaterialPageRoute(builder: (context) => const LoginPage());
         }

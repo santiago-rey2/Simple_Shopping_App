@@ -13,7 +13,7 @@ class ApiController extends ChangeNotifier {
   final UserModel _userModel = UserModel();
 
   List<Product> _products = [];
-  List<CartProduct> _cart = [];
+  final List<CartProduct> _cart = [];
   List<String> _categories = [];
   List<Product> _productsview = [];
   double _totalcartrpice = 0;
@@ -30,7 +30,7 @@ class ApiController extends ChangeNotifier {
   int get cartQuantitie => _quantitie;
   int get getBottonNavigationPage => _bottonNavigationPage;
   String get actualCategory => _actualcategory;
-  User? get getuserData => _userdata;
+  User? get userdata => _userdata;
 
   void getAllProducts() async {
     _products = await _pmodel.fetchproducts();
@@ -81,9 +81,9 @@ class ApiController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void userLoged() async {
+  Future<User> getUserData() async {
     _userdata = await _userModel.fetchuser();
-    notifyListeners();
+    return await _userModel.fetchuser();
   }
 
   void setQuantitie(int value) {

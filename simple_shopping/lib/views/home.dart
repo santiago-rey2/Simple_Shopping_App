@@ -8,6 +8,7 @@ import 'package:simple_shopping/screens/profile.dart';
 import 'package:simple_shopping/settings/app_text.dart';
 
 class HomePage extends StatefulWidget {
+  
   const HomePage({super.key});
 
   @override
